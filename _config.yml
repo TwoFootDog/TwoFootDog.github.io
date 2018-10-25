@@ -3,7 +3,7 @@ title: 두발로걷는개의 Blog
 email: ekfrl2815@gmail.com
 description: 
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site
+url: "https://twofootdog.github.io" # the base hostname & protocol for your site
 google_analytics: ""
 
 # User Settings
