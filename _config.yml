@@ -1,13 +1,13 @@
 # Site Settings
-title: 두발로걷는개의 발자국
+title: TwoFootDog
 email: ekfrl2815@gmail.com
-description: 이곳은 두발로걷는개의 블로그입니다.
+description: 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site
 google_analytics: ""
 
 # User Settings
-username: TwoFootDog
+username: 두발로걷는개의 BLOG
 user_description: Developer
 disqus_username: 
 
