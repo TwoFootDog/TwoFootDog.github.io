@@ -1,5 +1,5 @@
 # Site Settings
-title: 두발로걷는개의 BLOG
+title: 두발로걷는개의 Blog
 email: ekfrl2815@gmail.com
 description: 
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -7,7 +7,7 @@ url: "" # the base hostname & protocol for your site
 google_analytics: ""
 
 # User Settings
-username: 두발로걷는개의 BLOG
+username: 두발로걷는개의 Blog
 user_description: Developer
 disqus_username: 
 
