@@ -5,9 +5,11 @@ description: Some description.
 permalink: /about/
 ---
 
-<img itemprop="image" src="images/웰시코기1.jpg" alt="Your Name">
+<img itemprop="image" class="img-rounded" src="https://github.com/TwoFootDog/TwoFootDog.github.io/blob/master/images/두발로걷는개1.jpg" alt="Your Name">
 
 ## About ME
 
 개와 고양이를 사랑하는
+
+
 개발자같지 않은 개발자입니다
