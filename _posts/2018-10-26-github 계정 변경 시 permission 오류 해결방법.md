@@ -1,4 +1,12 @@
-
+---
+layout: post
+title: "github 계정 변경 시 permission 오류 해결방법"
+description: github 계정 변경 시 permission 오류 해결방법
+image: '../images/웰시코기1.jpg'
+category: 'blog'
+twitter_text: aaaa
+introduction: bbbb
+---
 
 동일 컴퓨터에서 github 계정 변경 후 push를 할 경우 아래와 같은 에러가 발생할 수 있다.
 
