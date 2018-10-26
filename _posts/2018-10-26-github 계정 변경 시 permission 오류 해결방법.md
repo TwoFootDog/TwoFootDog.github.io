@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "github 계정 변경 시 permission 오류 해결방법"
-description: github 계정 변경 시 permission 오류 해결방법
+description: 동일 컴퓨터에서 github 계정 변경 후 push시 permission 에러가 발생하는 문제를 해결해보자.
 image: '../images/웰시코기1.jpg'
-category: 'blog'
-twitter_text: aaaa
-introduction: bbbb
+category: 'GIT'
+tags : IT, GIT
+twitter_text: 
+introduction: 동일 컴퓨터에서 github 계정 변경 후 push시 permission 에러가 발생하는 문제를 해결해보자.
 ---
 
 동일 컴퓨터에서 github 계정 변경 후 push를 할 경우 아래와 같은 에러가 발생할 수 있다.
@@ -18,6 +19,7 @@ introduction: bbbb
 1) 우선 현재 계정정보를 확인한다
 
 `git config user.name`
+
 `git config user.email`
 
 
@@ -33,6 +35,7 @@ _ _ _
 
 
 `git config --global user.name 신규계정`
+
 `git config --global user.email 신규이메일`
 
 
