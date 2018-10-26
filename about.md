@@ -5,9 +5,9 @@ description: Some description.
 permalink: /about/
 ---
 
-<img itemprop="image" class="img-rounded" src="./images/고릴라1.jpg" alt="Your Name">
+<img itemprop="image" class="img-rounded" src="./images/두발로걷는개1.jpg" alt="Your Name">
 
 ## About ME
 
-난 동물을 사랑하는
-춤추는 고릴라
+개와 고양이를 사랑하는
+개발자같지 않은 개발자입니다
