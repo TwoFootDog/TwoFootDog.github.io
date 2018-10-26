@@ -11,6 +11,9 @@ twitter_text:
 introduction: 동일 컴퓨터에서 github 계정 변경 후 push시 permission 에러가 발생하는 문제를 해결해보자.
 ---
 
+
+
+
 동일 컴퓨터에서 github 계정 변경 후 push를 할 경우 아래와 같은 에러가 발생할 수 있다.
 
 
