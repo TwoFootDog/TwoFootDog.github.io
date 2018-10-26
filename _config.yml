@@ -29,6 +29,8 @@ permalink: /:title/
 gems:
   - jemoji
 
+comments: facebook-comments
+
 # Links to include in menu navigation
 # For external links add external: true
 links:
