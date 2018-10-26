@@ -1,4 +1,4 @@
-# Github 계정 변경 시 permission 오류 해결 방법
+
 
 동일 컴퓨터에서 github 계정 변경 후 push를 할 경우 아래와 같은 에러가 발생할 수 있다.
 
@@ -8,10 +8,10 @@
 
 
 1) 우선 현재 계정정보를 확인한다
-```
-**git config user.name**
-**git config user.email**
-```
+
+`git config user.name`
+`git config user.email`
+
 
 을 치면 신규계정이 아닌 이전계정과 이전 이메일 주소가 나올 것이다.
 
@@ -23,10 +23,10 @@ _ _ _
 2) 해당 계정을 신규 계정으로 변경해주고
 (해당 계정정보는 ~/.gitconfig에서도 변경 가능하다)
 
-```
-**git config --global user.name 신규계정**
-**git config --global user.email 신규이메일**
-```
+
+`git config --global user.name 신규계정`
+`git config --global user.email 신규이메일`
+
 
 
 _ _ _
