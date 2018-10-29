@@ -40,8 +40,8 @@ links:
     url: /about/
   - title: Contact
     url: /contact/
-  - title: Project
-    url: 
+  - title: Tags
+    url: /tags/
 
 # Exclude my node related stuff
 exclude: ['package.json', 'src', 'node_modules']
