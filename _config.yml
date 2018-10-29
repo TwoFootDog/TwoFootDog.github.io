@@ -41,7 +41,7 @@ links:
   - title: Contact
     url: /contact/
   - title: Project
-    url: /project/
+    url: 
 
 # Exclude my node related stuff
 exclude: ['package.json', 'src', 'node_modules']
