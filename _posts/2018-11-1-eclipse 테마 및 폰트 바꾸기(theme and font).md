@@ -6,7 +6,7 @@ image: '../images/강아지3.jpg'
 category: 'Eclipse'
 tags : 
 - IT
-- Eclplise
+- Eclipse
 twitter_text: 
 introduction: 개발 시 사용하는 Eclipse의 테마(theme) 와 폰트(font)를 내가 원하는대로 바꿔보자.
 ---
