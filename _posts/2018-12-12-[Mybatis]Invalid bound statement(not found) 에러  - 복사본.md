@@ -2,7 +2,7 @@
 layout: post
 title: "[Mybatis]invalid bound statement (not found) 에러"
 description: IntelliJ 단축키 정리
-image: '../images/강아지2.jpg'
+image: '../images/강아지7.jpg'
 category: 'Mybatis'
 tags : 
 - IT

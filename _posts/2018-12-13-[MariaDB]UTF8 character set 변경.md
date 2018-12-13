@@ -2,7 +2,7 @@
 layout: post
 title: "[MariaDB]UTF8 Character Set 변경방법"
 description: MariaDB UTF8 Character Set 변경방법
-image: '../images/강아지4.jpg'
+image: '../images/강아지8.jpg'
 category: 'MariaDB'
 tags : 
 - IT
