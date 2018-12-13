@@ -39,6 +39,7 @@ _ _ _
 _ _ _
 
 4) MariaDB 설정이 정상적으로 변경이 되었는지 확인한다.
+
 `show variables like 'c%';`
 
 
