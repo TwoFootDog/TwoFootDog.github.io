@@ -75,6 +75,7 @@ _ _ _
 5) web.xml 및 dispatcher-servlet.xml을 수정한다. (applicationContext.xml은 추후 bean등록이나 mybatis 설정 시 수정을 하고 지금은 수정이 불필요함.)
 
 <web.xml>
+
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
@@ -121,6 +122,7 @@ _ _ _
 
 
 <dispatcher-servlet.xml>
+
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -152,6 +154,7 @@ _ _ _
 
 
 6) pom.xml을 수정한다.(java, spring, aspectj, slf4j 버전 및 dependencies 추가 등)
+
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
