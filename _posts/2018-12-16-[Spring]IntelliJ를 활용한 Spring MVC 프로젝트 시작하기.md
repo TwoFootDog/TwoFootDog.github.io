@@ -115,7 +115,10 @@ _ _ _
         <servlet-name>dispatcher</servlet-name>
     </filter-mapping>
 </web-app>
+
 ```
+
+
 
 
 
@@ -141,7 +144,9 @@ _ _ _
 
     <context:component-scan base-package="com.zptutxptc.controller" />
 </beans>
+
 ```
+
 
 
 
@@ -314,10 +319,12 @@ _ _ _
             </plugin>
         </plugins>
     </build>
-
 </project>
 
 ```
+
+
+
 
 
 
@@ -330,6 +337,7 @@ _ _ _
 7) /src/main/java/ 밑에 com.zptutxptc.controller 패키지에 **HomeController.java**를 작성한다.
 
 <HomeController.java>
+
 ```
 package com.zptutxptc.controller;
 
@@ -346,8 +354,10 @@ public class HomeController {
         return "home";
     }
 }
-
 ```
+
+
+
 
 
 
@@ -358,6 +368,7 @@ _ _ _
 8) /src/main/webapp/WEB-INF/views에 **home.jsp**를 작성한다.
 
 <home.jsp>
+
 ```
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -371,6 +382,10 @@ _ _ _
 </html>
 
 ```
+
+
+
+
 
 
 
@@ -390,4 +405,4 @@ _ _ _
 
 10) 설정된 tomcat server 구동
 
-*출처 : 음슴
+*출처 : <https://doublesprogramming.tistory.com/171> 참고
