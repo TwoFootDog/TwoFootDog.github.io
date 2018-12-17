@@ -74,7 +74,7 @@ _ _ _
 
 5) web.xml 및 dispatcher-servlet.xml을 수정한다. (applicationContext.xml은 추후 bean등록이나 mybatis 설정 시 수정을 하고 지금은 수정이 불필요함.)
 
-<web.xml>
+**web.xml**
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -124,7 +124,7 @@ _ _ _
 
 
 
-<dispatcher-servlet.xml>
+**dispatcher-servlet.xml**
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -336,7 +336,7 @@ _ _ _
 
 7) /src/main/java/ 밑에 com.zptutxptc.controller 패키지에 **HomeController.java**를 작성한다.
 
-<HomeController.java>
+**HomeController.java**
 
 ```
 package com.zptutxptc.controller;
@@ -367,7 +367,7 @@ _ _ _
 
 8) /src/main/webapp/WEB-INF/views에 **home.jsp**를 작성한다.
 
-<home.jsp>
+**home.jsp**
 
 ```
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -382,7 +382,6 @@ _ _ _
 </html>
 
 ```
-
 
 
 
