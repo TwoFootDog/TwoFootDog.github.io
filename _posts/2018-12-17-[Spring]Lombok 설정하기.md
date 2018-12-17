@@ -69,7 +69,7 @@ _ _ _
 _ _ _
 
 
-4)IntelliJ 재기동 후 소스에 적용
+4)IntelliJ 재기동 후 소스에 적용(Data 어노테이션)
 
 ```
 package com.zptutxptc.domain;
@@ -93,6 +93,7 @@ public class ZptutxptcInputVO {
 
 
 
+_ _ _
 
 
 
