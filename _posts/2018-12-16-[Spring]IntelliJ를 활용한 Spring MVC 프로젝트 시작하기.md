@@ -45,19 +45,8 @@ _ _ _
 - src/main/java 밑에 필요한 패키지 들을 생성(controller, mapper, domain, service 등)
 - src/main/resource 밑에도 mapper 디렉토리를 생성(패키지 아님. 디렉토리의 경우 한개씩 순차적으로 생성해야함.(예)com->zptutxptc->mapper )
 - src/test 밑에도 src/main 과 동일한 패키지와 디렉토리를 생성해준다.
-- 디렉토리 간단 설명 : 
-	- src/main/java : java 소스 파일
-	- src/main/resource : mapper와 log 관련 설정 xml 파일
-	- src/main/webapp : web디렉토리. (처음에 만들면 src 밖에 web디렉토리가 생성되므로 디렉토리 변경 필요. 아래 4)설명 참고)
-		- WEB-INF : web information 디렉토리
-			- spring-config : spring 관련 설정 xml (applicationContext.xml, dispatcher-servlet.xml)
-		- views : jsp 파일
-		- resources : js, css등 정적 리소스
-	- src/test/java : 테스트 용 java 소스 파일
-	- src/test/resource : 테스트 용 resource파일
 
-
-
+**src 디렉토리 구조**
 ![다섯번째이미지](../images/intellij_spring_start_20181216_5.jpg)
 
 
@@ -73,6 +62,11 @@ _ _ _
 - web/WEB-INF/ 밑에 view라는 디렉토리를 신규 생성하고, index.jsp는 삭제
 - web 디렉토리를 src/main/ 밑으로 이동시키고 이름을 webapp으로 변경
 - File->Project Structure 클릭. Modules의 web을 선택하여 **Web Resource Directroy**애 WEF-INF 경로가 다르게 설정되어 있을 수 있으니 webapp의 위치에 알맞게 변경한다.(필수)
+
+**web 디렉토리 구조**
+![열번째이미지](../images/intellij_spring_start_20181216_10.jpg)
+
+**Web Resource Directory 경로 변경**
 ![여섯번째이미지](../images/intellij_spring_start_20181216_6.jpg)
 
 
