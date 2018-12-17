@@ -43,7 +43,7 @@ _ _ _
 
 3) src 디렉토리 구조를 변경한다.
 - src/main/java 밑에 필요한 패키지 들을 생성(controller, mapper, domain, service 등)
-- src/main/resource 밑에도 mapper 디렉토리를 생성(패키지 아님. 디렉토리의 경우 한개씩 순차적으로 생성해야함.(예)com->zptutxptc->mapper )
+- src/main/resources 밑에도 mapper 디렉토리를 생성(패키지 아님. 디렉토리의 경우 한개씩 순차적으로 생성해야함.(예)com->zptutxptc->mapper )
 - src/test 밑에도 src/main 과 동일한 패키지와 디렉토리를 생성해준다.
 
 **src 디렉토리 구조**
@@ -334,13 +334,120 @@ _ _ _
 
 
 
+_ _ _
+
+
+7) src/main/resources 와 src/test/resources 밑에 log4j.xml 파일 생성한다.
+
+**/src/main/resources/log4j.xml**
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- Application Loggers -->
+	<logger name="com.zptutxptc.contoller">
+		<level value="info" />
+	</logger>
+	
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+
+	<!-- Root Logger -->
+	<root>
+		<priority value="warn" />
+		<appender-ref ref="console" />
+	</root>
+	
+</log4j:configuration>
+
+```
+
+
+
+
+
+**/src/test/resources/log4j.xml**
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- Application Loggers -->
+	<logger name="com.zptutxptc.controller">
+		<level value="info" />
+	</logger>
+	
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>	
+	
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+
+	<!-- Root Logger -->
+	<root>
+		<priority value="info" />
+		<appender-ref ref="console" />
+	</root>
+	
+</log4j:configuration>
+
+```
+
+
+
+
+
 
 
 
 _ _ _
 
 
-7) /src/main/java/ 밑에 com.zptutxptc.controller 패키지에 **HomeController.java**를 작성한다.
+8) /src/main/java/ 밑에 com.zptutxptc.controller 패키지에 **HomeController.java**를 작성한다.
 
 **HomeController.java**
 
@@ -371,7 +478,8 @@ public class HomeController {
 
 _ _ _
 
-8) /src/main/webapp/WEB-INF/views에 **home.jsp**를 작성한다.
+
+9) /src/main/webapp/WEB-INF/views에 **home.jsp**를 작성한다.
 
 **home.jsp**
 
@@ -396,9 +504,13 @@ _ _ _
 
 
 
+
+
+
 _ _ _
 
-9) Run -> Edit Configurations(Alt + Shift + F10)에서 tomcat server 설정
+
+10) Run -> Edit Configurations(Alt + Shift + F10)에서 tomcat server 설정
  - tomcat 서버 신규 생성(local)
  - Server 의 URL 변경
  - Deployment를 war exploded로 등록 및 application context를 root(/)로 변경
