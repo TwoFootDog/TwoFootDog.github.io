@@ -41,13 +41,21 @@ _ _ _
 _ _ _
 
 
-3) 추가적으로 디렉토리 구조를 변경한다.
-우선 src/main/java 밑에 필요한 패키지 들을 생성해주고(controller, mapper, domain, service 등)
-src/main/resource 밑에도 mapper 디렉토리를 생성해준다.(패키지 아님. 디렉토리의 경우 한개씩 순차적으로 생성해야함.(예)com->zptutxptc->mapper )
-src/test 밑에도 src/main 과 동일한 패키지와 디렉토리를 생성해준다.
-web/WEB-INF 밑에 있는 applicationContext.xml, dispatcher-servlet.xml을 web/WEB-INF/spring-config(신규생성) 디렉토리로 옮겨준다.
-web/WEB-INF/ 밑에 view라는 디렉토리를 신규 생성하고, index.jsp는 삭제해준다.
-마지막으로 web 디렉토리를 src/main/ 밑으로 이동시키고 이름을 webapp으로 변경한다.
+3) src 디렉토리 구조를 변경한다.
+- src/main/java 밑에 필요한 패키지 들을 생성(controller, mapper, domain, service 등)
+- src/main/resource 밑에도 mapper 디렉토리를 생성(패키지 아님. 디렉토리의 경우 한개씩 순차적으로 생성해야함.(예)com->zptutxptc->mapper )
+- src/test 밑에도 src/main 과 동일한 패키지와 디렉토리를 생성해준다.
+- 디렉토리 간단 설명 : 
+	- src/main/java : java 소스 파일
+	- src/main/resource : mapper와 log 관련 설정 xml 파일
+	- src/main/webapp : web디렉토리. (처음에 만들면 src 밖에 web디렉토리가 생성되므로 디렉토리 변경 필요. 아래 4)설명 참고)
+		- WEB-INF : web information 디렉토리
+			- spring-config : spring 관련 설정 xml (applicationContext.xml, dispatcher-servlet.xml)
+		- views : jsp 파일
+		- resources : js, css등 정적 리소스
+	- src/test/java : 테스트 용 java 소스 파일
+	- src/test/resource : 테스트 용 resource파일
+
 
 
 ![다섯번째이미지](../images/intellij_spring_start_20181216_5.jpg)
@@ -60,7 +68,11 @@ web/WEB-INF/ 밑에 view라는 디렉토리를 신규 생성하고, index.jsp는
 _ _ _
 
 
-4) File->Project Structure 클릭. Modules의 web을 선택하여 **Web Resource Directroy**를 webapp의 위치에 알맞게 변경한다.
+4) web 디렉토리 구조를 변경한다. (web 디렉토리 구조 변경은 이클립스로 Spring MVC 프로젝트 생성 시 기본으로 생성되는 디렉토리 구조와 동일하게 하기 위함이다. 구조를 변경하지 않아도 상관없다. 단 **Web Resource Directory**를 web디렉토리 위치와 동일하게 변경이 필요하다.)
+- web/WEB-INF 밑에 있는 applicationContext.xml, dispatcher-servlet.xml을 web/WEB-INF/spring-config(신규생성) 디렉토리로 옮김
+- web/WEB-INF/ 밑에 view라는 디렉토리를 신규 생성하고, index.jsp는 삭제
+- web 디렉토리를 src/main/ 밑으로 이동시키고 이름을 webapp으로 변경
+- File->Project Structure 클릭. Modules의 web을 선택하여 **Web Resource Directroy**애 WEF-INF 경로가 다르게 설정되어 있을 수 있으니 webapp의 위치에 알맞게 변경한다.(필수)
 ![여섯번째이미지](../images/intellij_spring_start_20181216_6.jpg)
 
 
@@ -158,7 +170,7 @@ _ _ _
 _ _ _
 
 
-6) pom.xml을 수정한다.(java, spring, aspectj, slf4j 버전 및 dependencies 추가 등)
+6) pom.xml을 수정 후 maven dependency re-import 수행(java, spring, aspectj, slf4j 버전 및 dependencies 추가 등)
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
