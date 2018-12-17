@@ -59,9 +59,9 @@ _ _ _
 
 4) web 디렉토리 구조를 변경한다. (web 디렉토리 구조 변경은 이클립스로 Spring MVC 프로젝트 생성 시 기본으로 생성되는 디렉토리 구조와 동일하게 하기 위함이다. 구조를 변경하지 않아도 상관없다. 단 **Web Resource Directory**를 web디렉토리 위치와 동일하게 변경이 필요하다.)
 - web/WEB-INF 밑에 있는 applicationContext.xml, dispatcher-servlet.xml을 web/WEB-INF/spring-config(신규생성) 디렉토리로 옮김
-- web/WEB-INF/ 밑에 view라는 디렉토리를 신규 생성하고, index.jsp는 삭제
+- web/WEB-INF/ 밑에 views라는 신규 디렉토리를 생성하고, index.jsp는 삭제
 - web 디렉토리를 src/main/ 밑으로 이동시키고 이름을 webapp으로 변경
-- File->Project Structure 클릭. Modules의 web을 선택하여 **Web Resource Directroy**애 WEF-INF 경로가 다르게 설정되어 있을 수 있으니 webapp의 위치에 알맞게 변경한다.(필수)
+- File->Project Structure 클릭. Modules의 web을 선택하여 **Web Resource Directroy**애 WEB-INF 경로가 다르게 설정되어 있을 수 있으니 webapp의 위치에 알맞게 변경한다(필수). 빨간글씨가 나오면 경로가 잘못 입력된 것이다.
 
 **web 디렉토리 구조**
 ![열번째이미지](../images/intellij_spring_start_20181216_10.jpg)
@@ -529,7 +529,7 @@ _ _ _
 
 
 
-11) 설정된 tomcat server 구동
+11) 설정된 tomcat server 구동. 웹 브라우저에서 localhost:8080으로 접속하여 페이지 정상 여부 확인
 
 
 
