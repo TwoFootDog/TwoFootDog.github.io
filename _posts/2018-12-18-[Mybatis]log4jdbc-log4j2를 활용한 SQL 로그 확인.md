@@ -9,7 +9,8 @@ tags :
 - IntelliJ
 - Spring
 - SpringMVC
-- Lombok
+- Mybatis
+- Log4j
 twitter_text: 
 introduction: lo4jdbc-log4j2 라이브러리를 사용하여 SQL로그 확인하기
 ---
