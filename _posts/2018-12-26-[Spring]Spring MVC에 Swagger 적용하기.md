@@ -18,6 +18,8 @@ Spring 프로젝트를 진행하면서 Controller에 API를 만들게 되면 해
 API 정보를 엑셀이나 워드이 아닌 HTML 문서로 만들어주는 기능이 있는데 그것을 **Swagger**라는 라이브러리이다.
 이 라이브러리는 서버가 올라갈 때 자동으로 RestController 어노테이션을 읽어서 내부의 API를 분석하고 HTML 문서를 작성해 API 정보를 확인할 수 있게 해준다. 
 
+
+
 Spring 프로젝트에 Swagger를 적용시키는 방법은 <https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api>에도 잘 나와있지만 개인적으로 한번 정리해 보았다.
 
 
