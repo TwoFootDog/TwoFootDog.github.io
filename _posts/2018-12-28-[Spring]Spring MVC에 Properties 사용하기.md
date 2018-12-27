@@ -74,10 +74,10 @@ _ _ _
 4) java파일에서 properties에 등록된 변수를 사용할 경우 Value 어노테이션을 사용한다.
 
 ```
-@Value(hikariConfig.username)
+@Value("${hikariConfig.username}")
 private String username;
 
-@Value(hikariConfig.password)
+@Value("${hikariConfig.password}")
 private String password;
 ```
 
