@@ -9,7 +9,7 @@ tags :
 - IntelliJ
 - Spring
 - SpringMVC
-- Lombok
+- Database
 twitter_text: 
 introduction: IntelliJ에서 Database tool을 활용하여 CRUD 처리하기
 ---

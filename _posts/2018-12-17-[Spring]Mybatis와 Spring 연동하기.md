@@ -9,7 +9,7 @@ tags :
 - IntelliJ
 - Spring
 - SpringMVC
-- Lombok
+- Mybatis
 twitter_text: 
 introduction: Spring 과 Mybatis 연동하기
 ---
