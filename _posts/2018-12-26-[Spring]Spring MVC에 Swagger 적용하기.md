@@ -2,7 +2,7 @@
 layout: post
 title: "[Spring]Spring MVC에 Swagger 적용하기"
 description: Spring MVC 프로젝트에 Swagger 적용하기
-image: '../images/강아지14.jpg'
+image: '../images/강아지15.jpg'
 category: 'SpringMVC'
 tags : 
 - IT
