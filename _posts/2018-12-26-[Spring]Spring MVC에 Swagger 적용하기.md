@@ -169,7 +169,7 @@ import javax.servlet.http.HttpServletRequest;
 @Api(value = "HomeControllerTest", description = "HomeController 테스트입니다.") // Controller에 대한 Swagger 설명
 public class HomeController {
 
-    ZptutxptcService zptutxptcService;
+    CallService callService;
 
     @ApiOperation(  // API에 대한 Swagger 설명
             value="서비스",
@@ -185,13 +185,23 @@ public class HomeController {
             @ApiResponse(code = 200, message = "OK"),
             @ApiResponse(code = 404, message = "No params")
     })
-    @PostMapping(value="/zptutxptc", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ZptutxptcOutputVO> zptutcptc(HttpServletRequest Header,
-                                                       @RequestBody ZptutxptcInputVO inputVO) {
+    @PostMapping(value="/service", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<OutputVO> service(HttpServletRequest Header,
+                                                       @RequestBody InputVO inputVO) {
 
-        return zptutxptcService.syncCall(Header, inputVO);
+        return callService.syncCall(Header, inputVO);
     }
 
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "area", value = "지역", required = true, dataType = "String", paramType = "path"),
+            @ApiImplicitParam(name = "param1", value = "파라미터1", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "param2", value = "파마미터2", required = false, dataType = "int", paramType = "query")
+    })
+    @GetMapping(value = "/home/{area}")
+    public String home(@PathVariable String area, @RequestParam String param1, @RequestParam int param2) {
+        return "home";
+    }
+    
     @GetMapping(value = "/")
     public String home(Model model) {
         model.addAttribute("hi", "Hello~~");
