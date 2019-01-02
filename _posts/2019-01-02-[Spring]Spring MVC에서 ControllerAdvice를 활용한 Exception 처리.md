@@ -147,4 +147,6 @@ public class Service1 {
 ```
 
 
-*출처 : <http://jijs.tistory.com/entry/spring-%EC%84%A4%EC%A0%95-xml%EA%B3%BC-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C%EC%97%90%EC%84%9C-properties-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0> 참고
+*출처 : 
+<http://springboot.tistory.com/33>, 
+<https://spring.io/blog/2013/11/01/exception-handling-in-spring-mvc> 참고
