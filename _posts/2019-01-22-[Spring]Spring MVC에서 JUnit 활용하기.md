@@ -203,7 +203,9 @@ _ _ _
 ![두번째이미지](../images/junit_20190122_2.jpg)
 
 
-
+| column | column |
+|--------|--------|
+|        |        |
 
 
 _ _ _
@@ -211,17 +213,17 @@ _ _ _
 
 
 5) JUnit assert 주요 메서드
-| assert메서드 | 설명 |
+| assert메서드                      | 설명                           |
 |----------------------------------|-------------------------------|
 |assertArrayEquals(a,b)            | 배열 A와 B가 일치함을 확인       |
 |----------------------------------|-------------------------------|
 |asserEquals(a,b)                  | 배열 A와 B가 일치함을 확인       |
 |----------------------------------|-------------------------------|
-|assertSame(a,b)                   | 객체 A와 B가 일치함을 확인.      |
+|assertSame(a,b)                   | 객체 A와 B가 일치함을 확인       |
 |----------------------------------|-------------------------------|
-|assertTrue(a)                     | 조건 a가 참인가를 확인한다.       |
+|assertTrue(a)                     | 조건 a가 참인가를 확인한다        |
 |----------------------------------|-------------------------------|
-|assertNotNull(a)                  | 객체 a가 null이 아님을 확인한다.  |
+|assertNotNull(a)                  | 객체 a가 null이 아님을 확인한다   |
 
 
 
@@ -234,21 +236,22 @@ _ _ _
 
 6) JUnit 주요 어노테이션
  6-1)JUnit 테스트를 위한 기본 셋팅
-```
+`
 @RunWith(SpringJUnit4ClassRunner.class) // SpringJunit4ClassRunner.class는 spring-test에서 제공하는 단위테스르를 위한 클래스 러너
+
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring-config/applicationContext.xml") // 테스트 시 참조할 설정파일
-```
+`
 
  6-2) 메서드 수행 시간 제한하기
-```
+`
 @Test(timeout=5000)
-```
+`
 
 
  6-3)Exception 테스트하기
-```
+`
 @Test(expected=RuntimeException.class)
-```
+`
 
 
 
