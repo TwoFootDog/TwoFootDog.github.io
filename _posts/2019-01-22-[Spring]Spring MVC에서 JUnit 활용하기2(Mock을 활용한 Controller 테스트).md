@@ -16,10 +16,11 @@ twitter_text:
 introduction : Spring MVC 프로젝트에서 JUnit과 Mock을 활용하여 Controller 단위테스트를 해보자.
 ---
 
-Spring 프로젝트를 어느정도 진행되다 보면 단위테스트를 수행하여 해당 프로그램이 정상적으로 작동되는지 테스트를 해봐야 한다.
-이때 보통 JUnit을 활용하여 단위테스트를 진행한다.
+***Spring MVC JUnit 활용하기** 에서 JUnit을 활용한 서비스 단위테스트를 진행하였다.
+이번에는 JUnit과 Mock을 활용하여 Contrller의 단위테스트를 진행해보도록 하자.
 
-1. JUnit이란
+
+1. Mock이란?
 
 **JUnit은 java 프로그램 단위테스트를 쉽게 해주는 테스트용 Framework이다.**
 
@@ -29,7 +30,7 @@ JUnit을 활용하면 system.out으로 번거롭게 디버깅 하지 않아도 �
 @Test 어노테이션을 활용하여 단순하게 코드를 만들 수 있으며, 성공시에는 녹색, 실패 시에는 붉은색으로 표시가 된다.
 
 
-3. JUnit 테스트 방법
+3. Mock 테스트 방법
 
 _ _ _
 
