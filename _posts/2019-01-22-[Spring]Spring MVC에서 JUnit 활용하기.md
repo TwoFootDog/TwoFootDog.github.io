@@ -209,7 +209,7 @@ _ _ _
 
 5) JUnit assert 주요 메서드
 
-| column                            | column                            |
+| assert 메서드                      | 설명                               |
 |-----------------------------------|-----------------------------------|
 |assertArrayEquals(a,b)             | 배열 A와 B가 일치함을 확인           |
 |-----------------------------------|-----------------------------------|
@@ -221,7 +221,7 @@ _ _ _
 |-----------------------------------|-----------------------------------|
 |assertNotNull(a)                  | 객체 a가 null이 아님을 확인한다       |
 
-
+이외의 함수는 <http://junit.sourceforge.net/javadoc/org/junit/Assert.html> 에서 확인 가능하다.
 
 
 _ _ _
@@ -230,22 +230,21 @@ _ _ _
 
 
 6) JUnit 주요 어노테이션
- 6-1)JUnit 테스트를 위한 기본 셋팅
+
+JUnit 테스트를 위한 기본 셋팅
  
-`
-@RunWith(SpringJUnit4ClassRunner.class) // SpringJunit4ClassRunner.class는 spring-test에서 제공하는 단위테스르를 위한 클래스 러너
+`@RunWith(SpringJUnit4ClassRunner.class) // SpringJunit4ClassRunner.class는 spring-test에서 제공하는 단위테스르를 위한 클래스 러너`
 
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring-config/applicationContext.xml") // 테스트 시 참조할 설정파일
-`
+`@ContextConfiguration("file:src/main/webapp/WEB-INF/spring-config/applicationContext.xml") // 테스트 시 참조할 설정파일`
 
- 6-2) 메서드 수행 시간 제한하기
+메서드 수행 시간 제한하기
  
 `
 @Test(timeout=5000)
 `
 
 
- 6-3)Exception 테스트하기
+Exception 테스트하기
  
 `
 @Test(expected=RuntimeException.class)
