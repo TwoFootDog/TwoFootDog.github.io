@@ -21,6 +21,10 @@ introduction : Spring MVC 프로젝트에서 JUnit과 MockMvc를 활용하여 Co
 이번에는 JUnit과 MockMvc를 활용하여 Contrller의 단위테스트를 진행해보도록 하자.
 
 
+
+* * *
+
+
 1. MocMvc란?
 
 **브라우저에서의 요청과 응답을 의미하는 객체로서 Controller 테스트를 용이하게 해주는 라이브러리이며**
@@ -31,7 +35,6 @@ introduction : Spring MVC 프로젝트에서 JUnit과 MockMvc를 활용하여 Co
 
 3. MockMvc를 활용한 Controller 테스트 방법
 
-_ _ _
 
 
 
@@ -61,7 +64,9 @@ _ _ _
 
 
 
-_ _ _
+
+- - -
+
 
 
 
@@ -120,7 +125,9 @@ public class TestController {
 
 
 
-_ _ _
+
+- - -
+
 
 
 
@@ -156,12 +163,12 @@ public class ControllerTests {
     private MockMvc mockMvc;
 
     @Autowired
-    TestController testController;
+    TestController testController;	// 테스트를 진행할 controller
 
     @Before
     public void setUp() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(testController).build();     //test를 위한 MockMvc 객체 생성. testController 1개만 주입.
-//        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.context).build();  //test를 위한 MockMvc 객체 생성. 스프링이 로드한 WebApplicationContext의 인스턴스로 작동
+        this.mockMvc = MockMvcBuilders.standaloneSetup(testController).build();     // test를 위한 MockMvc 객체 생성. testController 1개만 주입.
+//        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.context).build();  // test를 위한 MockMvc 객체 생성. 스프링이 로드한 WebApplicationContext의 인스턴스로 작동.(standaloneSetup() 중 택 1)
     }
 
     @Test
@@ -185,8 +192,14 @@ public class ControllerTests {
  - WebApplicationContext를 생성할 수 있도록 하는 어노테이션
 
 
+_ _ _
+
+
 4-2) MockMvc
  - Controller 테스트를 위한 객체. .perform() 메소드를 지원하며 해당 메소드를 통해 Controller 호출 테스트를 한다.
+
+
+_ _ _
 
 
 4-3) setup()
@@ -195,12 +208,15 @@ public class ControllerTests {
 `this.mockMvc = MockMvcBuilders.webAppContextSetup(this.context).build();` 는 스프링에서 로드한 WebApplicationContext의 인스턴스로 작동하기 때문에 스트링 컨트롤러는 물론 의존성까지 로드되기 때문에 완전한 통합테스트를 할 수 있다.
 
 
+_ _ _
+
+
 4-4) perform()
  - perform() 안에는 controller 호출 방식인 get("호출URI"), post("호출URI"), put("호출URI"), delete("호출URI")가 들어갈 수 있다.(예 : perform(post("/test")))
  - 또한 get(), post() 뒤에 controller 호출 시 header값인 .header(), accept정보를 설정해주는 .accept(), JSON이나 XML타입을 결정해주는 .contentType(), Post방식일 경우 body값인 .content(), get 방식인 경우 파라미터인 .param() 등을 호출할 수 있다.
 (예 : post().header("header1", "aa").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE).content(mapper.writeValueString(new inputVO())) ....)
 
-(post 예제코드)
+++post() 예제코드++
 ```
 package com.tpcom_apr.service;
 
@@ -265,12 +281,18 @@ public class MockMvcTests {
 
 
 
-4-5) ResyktActions
+_ _ _
+
+
+4-5) ResultActions
  - MockMvc.perform() 메소드로 리턴되는 인터페이스. 지원 메소드는 andExpect(), andDo(), andReturn() 등이 있다.
  - andExpect()는 예상값을 검증한다. assert* 메소드와 유사한 기능이다.(예 : andExpect(status().isOk()))
  - andDo()는 요청에 대한 처리를 한다. 보통 print() 메소드를 많이 쓴다.(예 : .andDo(print()))
- - 테스트한 결과 객체를 받을 때 사용한다.
+ - andReturn()은 테스트한 결과 객체를 받을 때 사용한다.
 
+
+
+_ _ _
 
 
 4-6) jsonPath
@@ -295,7 +317,11 @@ public class MockMvcTests {
                 .andExpect(jsonPath("$.value3").value("0000"));
 ```
 
-_ _ _
+
+
+- - -
+
+
 
 
 
@@ -304,13 +330,15 @@ _ _ _
 ![두번째이미지](../images/junit_mockmvc_20190123_2.jpg)
 
 
-_ _ _
+
+
+- - -
 
 
 
 
 
-_ _ _
+
 
 
 
