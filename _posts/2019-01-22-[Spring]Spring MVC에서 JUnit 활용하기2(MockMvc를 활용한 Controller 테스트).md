@@ -25,6 +25,7 @@ introduction : Spring MVC 프로젝트에서 JUnit과 MockMvc를 활용하여 Co
 * * *
 
 
+
 1. MocMvc란?
 
 **브라우저에서의 요청과 응답을 의미하는 객체로서 Controller 테스트를 용이하게 해주는 라이브러리이며**
@@ -33,7 +34,13 @@ introduction : Spring MVC 프로젝트에서 JUnit과 MockMvc를 활용하여 Co
 
 
 
-3. MockMvc를 활용한 Controller 테스트 방법
+
+- - -
+
+
+
+
+2. MockMvc를 활용한 Controller 테스트 방법
 
 
 
@@ -216,7 +223,8 @@ _ _ _
  - 또한 get(), post() 뒤에 controller 호출 시 header값인 .header(), accept정보를 설정해주는 .accept(), JSON이나 XML타입을 결정해주는 .contentType(), Post방식일 경우 body값인 .content(), get 방식인 경우 파라미터인 .param() 등을 호출할 수 있다.
 (예 : post().header("header1", "aa").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE).content(mapper.writeValueString(new inputVO())) ....)
 
-++post() 예제코드++
+
+== post() 예제코드 ==
 ```
 package com.tpcom_apr.service;
 
