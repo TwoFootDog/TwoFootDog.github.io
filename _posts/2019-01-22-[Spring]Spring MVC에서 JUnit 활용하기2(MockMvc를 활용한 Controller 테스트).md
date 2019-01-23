@@ -161,11 +161,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring-config/applicationContext.xml", "file:src/main/webapp/WEB-INF/spring-config/dispatcher-servlet.xml"})
+@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring-config/applicationContext.xml", "file:src/main/webapp/WEB-INF/spring-config/dispatcher-servlet.xml"}) // xml 설정을 읽어 스프링 테스트 시작 전 빈 초기화 및 스프링 설정 업로드
 @WebAppConfiguration	// WebApplicationContext를 생성할 수 있도록 하는 어노테이션
 public class ControllerTests {
 
-    @Autowired
     private WebApplicationContext context; // MockMvc 객체 생성을 위한 context
     private MockMvc mockMvc;
 
