@@ -17,7 +17,7 @@ twitter_text:
 introduction : Spring MVC 프로젝트에서 JUnit과 MockMvc를 활용하여 Controller 단위테스트를 해보자.
 ---
 
-***Spring MVC JUnit 활용하기** 에서 JUnit을 활용한 서비스 단위테스트를 진행하였다.
+**Spring MVC JUnit 활용하기** 에서 JUnit을 활용한 서비스 단위테스트를 진행하였다.
 이번에는 JUnit과 MockMvc를 활용하여 Contrller의 단위테스트를 진행해보도록 하자.
 
 
@@ -66,7 +66,7 @@ _ _ _
 
 
 
-2) Test 대상인 클래스를 생성합니다.(서비스, 컨트롤러)
+2) Test 대상인 클래스를 생성한다.(서비스, 컨트롤러)
 
 src/main/java/com/test/service/TestService.java
 ```
@@ -160,8 +160,8 @@ public class ControllerTests {
 
     @Before
     public void setUp() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(testController).build();     // test를 위한 MockMvc 객체 생성. testController 1개만 주입.
-//        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.context).build();  // test를 위한 MockMvc 객체 생성. 스프링이 로드한 WebApplicationContext의 인스턴스로 작동
+        this.mockMvc = MockMvcBuilders.standaloneSetup(testController).build();     //test를 위한 MockMvc 객체 생성. testController 1개만 주입.
+//        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.context).build();  //test를 위한 MockMvc 객체 생성. 스프링이 로드한 WebApplicationContext의 인스턴스로 작동
     }
 
     @Test

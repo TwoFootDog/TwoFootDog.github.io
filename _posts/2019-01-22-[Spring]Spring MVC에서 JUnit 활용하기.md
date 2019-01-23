@@ -60,7 +60,7 @@ _ _ _
 
 
 
-2) Test 대상인 클래스를 생성합니다.(서비스, 컨트롤러)
+2) Test 대상인 클래스를 생성한다.(서비스, 컨트롤러)
 
 src/main/java/com/test/service/TestService.java
 ```
