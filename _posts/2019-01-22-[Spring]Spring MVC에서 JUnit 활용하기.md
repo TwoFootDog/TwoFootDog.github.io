@@ -92,7 +92,7 @@ import com.test.service.TestService;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -101,11 +101,12 @@ public class TestController {
     @Setter(onMethod_ = {@Autowired})
     private TestService testService;
 
-    @GetMapping(value = "/test/{number1}/{number2}")
-    public boolean test(@PathVariable int number1, @PathVariable int number2) {
+    @GetMapping(value = "/test")
+    public boolean test(@RequestParam int number1, @RequestParam int number2) {
         return testService.numberCompare(number1, number2);
     }
 }
+
 
 ```
 
@@ -127,6 +128,7 @@ import com.test.service.TestService;
 import lombok.Setter;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -183,7 +185,13 @@ public class ModuleTests {
     public void sleepTest() throws Exception{
         sleep(10000);
     }
+    @Test
+    @Ignore         // 테스트를 skip하는 어노테이션
+    public void ignoreTest() {
+        assertTrue(1==2);
+    }
 }
+
 
 
 ```
@@ -237,6 +245,25 @@ JUnit 테스트를 위한 기본 셋팅
 
 `@ContextConfiguration("file:src/main/webapp/WEB-INF/spring-config/applicationContext.xml") // 테스트 시 참조할 설정파일`
 
+
+테스트하기
+`
+@Test
+`
+
+
+테스트 시작 전 호출
+`
+@Before
+`
+
+
+테스트 종료 후 호출
+`
+@After
+`
+
+
 메서드 수행 시간 제한하기
  
 `
@@ -250,6 +277,12 @@ Exception 테스트하기
 @Test(expected=RuntimeException.class)
 `
 
+
+테스트 무시하기
+`
+@Test
+@Ignore
+`
 
 
 
