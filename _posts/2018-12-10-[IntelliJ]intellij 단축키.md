@@ -29,18 +29,27 @@ IntelliJ를 사용하면서 자주 사용되는 단축키는 아래와 같다.
 - Shift + Enter : 어느 커서에 있던 한줄 밑에서 시작
 - Ctrl + Alt + Enter : 어느 커서에 있던 한줄 위에서 시작
 - Ctrl + Shift + Enter : 문장 자동완성(if/elseif/; 등). 어느 커서에 있던 줄 끝에 ;붙이기
+- Alt + Shift + Insert(혹은 Alt + MouseLeftButton) : 세로 편집모드로 변경
+
+
 
 - Ctrl + N : 전체 클래스 검색
 - Ctrl + Shift + N : 전체 파일 검색
 - Ctrl + Shift + F : 전체 코드에서 단어 검색
 - Ctrl + R : 소스에서 검색 & Replace
 
+
+
 - Ctrl + O : 오버라이드 메서드 구현
 - Ctrl + I : 인터페이스 메서드 구현
+
+
 
 - Ctrl + Alt + T : (if/elseif/try/catch/for/synchronized/etc로 파일 감싸기)
 - Ctrl + Alt + L : 파일 단위 재정렬
 - Ctrl + Alt + I : 줄 단위 재정렬
+
+
 
 - Ctrl + Shift + F12 : editor 창 키우기/줄이기
 - Ctrl + Alt + S : Setting화면 팝업 출력
