@@ -20,17 +20,34 @@ FTP로 tomcat/webapps에 올리기만 하면 톰켓이 자동으로 압축을 �
 다른 방법으로는 **톰켓 어플리케이션 관리자 도구**를 활용하여 배포할 수 있다. 지금부터 해당 방법에 대해서 소개하겠다.
 
 
-1) tomcat을 구동해보자. tomcat 설치 후 path가 잡혀있으면(CATALINA_HOME 등) cmd를 실행시키고 **startup** 명령어를 실행하면 tomcat이 구동된다.
 
 
 _ _ _
+
+
+
+
+1) tomcat을 구동해보자. tomcat 설치 후 path가 잡혀있으면(CATALINA_HOME 등) cmd를 실행시키고 **startup** 명령어를 실행하면 tomcat이 구동된다.
+
+
+
+
+_ _ _
+
+
+
 
 
 2) 인터넷 브라우저에 **localhost:8080/manager**로 접속해보자. 사용자이름/비밀번호 입력창이 나오는데 아직 설정을 해 주지 않았기 때문에 입력을 할 수가 없다. 가볍게 무시해주자.
 ![첫번째 이미지](../images/maven_deploy_20190212_1.jpg)
 
 
+
+
 _ _ _
+
+
+
 
 
 3) 톰켓디렉토리/conf에 있는 tomcat-user.xml 파일의 <tomcat-users> 태그 안에 아래 내용을 추가해주자.
@@ -54,7 +71,9 @@ manger-gui는 tomcat 관리자 기능을 웹페이지에서 볼수 있는 role�
 ```
 
 
+
 _ _ _
+
 
 
 4) tomcat 중지 후 재기동한다(tomcat 중지 명령어 : 톰캣경로/bin/shutdown, tomcat 기동 명령어 : startup).
@@ -64,9 +83,16 @@ _ _ _
 
 
 
+_ _ _
+
+
+
+
+5) pom.xml파일에 아래 내용을 추가해주자. url은 http://(배포서버):(포트)/manager/text이고, path는 배포되는 위치에 해당 war파일로 생성이 된다. 때문에 배포 완료 후에는 http://(배포서버):(포트)/(path명) 으로 프로젝트 접근이 가능하다. (아래의 경우는 http://localhost:8080/project1)
+
 ```
-  <build>
-        <finalName>nxmile_approval</finalName>
+    <build>
+        <finalName>project1</finalName>
         <plugins>
             <!-- 배포 -->
             <plugin>
@@ -82,10 +108,34 @@ _ _ _
                 </configuration>
             </plugin>
 ```
+![네번째 이미지](../images/maven_deploy_20190212_4.jpg)
 
 
 
-mvn tomcat7:redeploy
+
+_ _ _
+
+
+
+6) **mvn tomcat7:redeploy** 명령어로 원격 서버(이 글에서는 http://localhost:8080/)에 배포를 수행한다. 해당 명령어를 실행하면 war파일(이 글에서는 project1.war)이 톰캣디렉토리/webapps에 생성이 되고, 톰캣에 의해 압축이 풀리면서 배포가 완료된다.
+![다섯번째 이미지](../images/maven_deploy_20190212_5.jpg)
+![여섯번째 이미지](../images/maven_deploy_20190212_6.jpg)
+
+
+
+
+
+_ _ _
+
+
+
+7) 인터넷 브라우저에서 http://localhost:8080/project1 을 입력하면 톰캣에 올린 프로젝트가 정상 접속되는 것을 확인할 수 있다.
+![일곱번째 이미지](../images/maven_deploy_20190212_7.jpg)
+
+
+
+_ _ _
+
 
 
 *출처 : 
