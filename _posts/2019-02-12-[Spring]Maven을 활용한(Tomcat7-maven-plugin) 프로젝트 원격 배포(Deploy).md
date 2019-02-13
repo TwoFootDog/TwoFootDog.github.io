@@ -88,7 +88,8 @@ _ _ _
 
 
 
-5) pom.xml파일에 아래 내용을 추가해주자. url은 http://(배포서버):(포트)/manager/text이고, path는 배포되는 위치에 해당 war파일로 생성이 된다. 때문에 배포 완료 후에는 http://(배포서버):(포트)/(path명) 으로 프로젝트 접근이 가능하다. (아래의 경우는 http://localhost:8080/project1)
+5) 톰캣 어플리케이션 관리자 도구의 설정은 완료되었다. 
+이제 pom.xml파일에 아래 내용을 추가해주자. url은 http://(배포서버):(포트)/manager/text로 작성하고, path에는 배포될 war파일 명을 작성한다(보통 루트(/)나 프로젝트 명을 적는다). 때문에 배포 완료 후에는 http://(배포서버):(포트)/(path명) 으로 프로젝트 접근이 가능하다. (아래의 경우는 http://localhost:8080/project1)
 
 ```
     <build>
@@ -117,7 +118,7 @@ _ _ _
 
 
 
-6) **mvn tomcat7:redeploy** 명령어로 원격 서버(이 글에서는 http://localhost:8080/)에 배포를 수행한다. 해당 명령어를 실행하면 war파일(이 글에서는 project1.war)이 톰캣디렉토리/webapps에 생성이 되고, 톰캣에 의해 압축이 풀리면서 배포가 완료된다.
+6) 콘솔창에서 maven 프로젝트 디렉토리로 이동 후 **mvn tomcat7:redeploy** 명령어로 원격 서버(이 글에서는 http://localhost:8080/)에 배포를 수행한다. 해당 명령어를 실행하면 war파일(이 글에서는 project1.war)이 톰캣디렉토리/webapps에 생성이 되고, 톰캣에 의해 압축이 풀리면서 배포가 완료된다. 만약 배포 war파일과 압축이 풀린 디렉토리(이 글에선 project1)가 이미 존재한다면 방법1)**mvn tomcat7:redeploy** 명령어를 수행하여 재 배포하거나, 방법2)**mvn tomcat7:undeploy**로 배포된 내용을 제거한 후 **mvn tomcat7:deploy**로 재 배포한다. 
 ![다섯번째 이미지](../images/maven_deploy_20190212_5.jpg)
 ![여섯번째 이미지](../images/maven_deploy_20190212_6.jpg)
 
@@ -138,7 +139,19 @@ _ _ _
 
 
 
+8) 만약 root 디렉토리로 배포를 하고 싶으면(예를들면 프로젝트 접속 시 http://localhost:8080으로 접속하고 싶으면) pom.xml작성 시 path부분만 root로 변경하면 된다.
+![여덟번째 이미지](../images/maven_deploy_20190212_8.jpg)
+
+
+
+
+_ _ _
+
+
+
 *출처 : 
 <https://www.bsidesoft.com/?p=7123>
-<https://wonzopein.com/56>
+
+<https://all-record.tistory.com/185>
+
 참고
