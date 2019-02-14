@@ -77,20 +77,80 @@ _ _ _
 _ _ _
 
 
+7) 메이븐을 이용한 의존성 관리
+- 
+
+
+
+
+_ _ _
+
+
+
+
 
 7) 메이븐(Maven) 빌드(build) & 라이프사이클 관련 설명
 - 빌드란? 자바코드를 실제로 사용할 수 있게 정리하는 과정. compile, test, package, install, deploy 등이 이에 포함된다.
-- 라이프사이클이란? 메이븐이 미리 정의하고 있는 빌드 순서. 라이프사이클의 각 빌드 단계를 페이즈(phase)라고 한다. maven의 모든 기능은 플러그인(plugin) 기반으로 동작. 플러그인에서 실행할 수 있는 각각의 작업을 골(goal)이라고 하며 각 골은 maven 라이프사이클의 페이즈(phase)와 연결된다. 
-- 페이즈 설명:
-  - complie : 소스 파일을 컴파일한다.
-  - test : 단위테스트 실행(기본설정은 단우이테스트가 실패하며 빌드 실패로 간주함)
-  - 
+- 라이프사이클이란? 메이븐이 미리 정의하고 있는 빌드 순서. 라이프사이클의 각 빌드 단계를 페이즈(phase)라고 한다. 
+- 페이즈(phase) 설명:
+  - 기본 라이프사이클
+  	- complie : 소스 파일을 컴파일한다.
+  	- test : 단위테스트 실행(기본설정은 단우이테스트가 실패하며 빌드 실패로 간주함)
+  	- package : 컴파일된 클래스 파일과 리소스 파일들을 war 혹은 jar와 같은 파일로 패키징
+  	- install : 패키징한 파일을 로컬 저장소에 배포(USER_HOME/.m2)
+  	- deploy : 패키징한 파일을 원격 저장소에 배포(nexus혹은 mavenn central 저장소)
+  - clean 라이프사이클
+    - clean : 메이븐 빌드를 통해 생성된 모든 산출물을 삭제(target 디렉토리에 생성된 산출물 삭제(예 : war파일 등))
+  - site 라이프사이클
+    - site : 메이븐 설정파일 정보를 활용하여 프로젝트에 대한 문서 사이트를 생성
+    - site-deploy : 생성한 문서 사이트를 설정되어 있느 서버에 배포
 
+
+
+_ _ _
+
+
+8) 메이븐 플러그인(plugin)과 골(goal)
+- maven의 모든 기능은 플러그인(plugin) 기반으로 동작한다. 메이븐 라이프사이클에 포함되어있는 페이즈 또한 플러그인을 통하여 실질적인 작업이 실행된다.
+- <build><plugins><plugin> 태그를 사용하여 사용하고자 하는 플러그인을 추가 및 설정할 수 있다.
+- 플러그인에서 실행할 수 있는 각각의 작업을 골(goal)이라고 하며 각 골은 maven 라이프사이클의 페이즈(phase)와 연결된다. 
+- 플러그인 골(goal) 실행방법 : mvn groupId:artifactId:version:goal(너무 어렵네)
+- 페이즈(phase) 별 플러그인 골(goal) 실행방법
+  - 기본 라이프사이클
+  	- mvn process-resources : resource 디렉토리에 있는 내용을 target/classes로 복사
+  	- **mvn compile** : src/java 밑의 모든 자바소스를 컴파일해서 target/classes로 복사
+  	- mvn process-testResources, mvn test-compile : 위 두 명령어가 src/java라면, 이것은 test/java 내용을 target/test-classes로 복사
+  	- mvn test : target/test-classes에 있는 테스트케이스의 단위테스트를 진행한다. 결과는 target/surefie-reports에 생성
+  	- **mvn package** : target디렉토리 하위에 jar, war, ear등 패키지파일을 생성한다. 이름은 pom.xml <build>태그의 <finalName>값을 사용한다.
+  	- **mvn install** : 로컬 저장소(USER_HOME/.m2)로 packaging한 파일을 배포한다.
+  	- **mvn deploy** : 원격 저장소로 packaging한 파일을 배포한다.
+  - clean 라이프사이클
+  	- **mvn clean** : 빌드 과정에서 생긴 target 디렉토리 내용을 삭제한다. mvn install 시 target을 지웠다가 다시 생성하고 싶으면 "mvn clean install" 명령어를 수행한다.
+  - site 라이프사이클
+  	- mvn site : target/site에 문서 사이트를 생성한다.
+  	- mvn site-deploy : 문서 사이트를 서버로 배포한다.
+- **페이즈(phase)는 특정 순서에 따라 goal이 실행되도록 구조를 제공하며, phase간에는 의존관계가 있다.(예를들면 mvn package가 수행되기 전에 mvn compile 등 이전 단계 goal이 실행된다.)**
+
+
+
+_ _ _
+
+
+9) pom.xml  <build> 태그 설명
+- <finalMame> : 빌드 결과물(war, jar, ear) 이름 설정
+- <resources> : 리소스(각종 설정 파일)의 위치 지정 가능. <resource>가 없으면 기본으로 "src/main/resources"
+- <testResources> : 테스트 리소스의 위치 지정 가능. <testResource>가 없으면 기본으로 "src/test/resources"
+- <repositories> : 빌드할 때 접근할 저장소의 위치를 지정할 수 있다. 기본적으로 메이븐 중앙 저장소인 <http://repo1.maven.org/maven2>로 지정되어 있음. 
+- <outputDirectory> : 컴파일한 결과물 위치 값 지정. 기본 "target/classes"
+- <testOutputDirectory> : 테스트 소스를 컴파일한 결과물 위치 값 지정. 기본 "target/test-classes"
+- <plugin> : 어떤 액션 하나를 담당하는 것으로 가장 중요하며 다양한 옵션값이 들어갈 수 있음.
+	- <executions> : 플러그인 goal과 관련된 실행에 대한 설정
+	- <configuration> : 플러그인에서 필요한 설정 값 지정
 
 
 *출처 : 
-<https://www.bsidesoft.com/?p=7123>
+<https://dimdim.tistory.com/entry/Maven-%EC%A0%95%EB%A6%AC>
 
-<https://all-record.tistory.com/185>
+<https://jeong-pro.tistory.com/168>
 
 참고
