@@ -151,8 +151,6 @@ _ _ _
 
 
 *출처 : 
-<https://www.bsidesoft.com/?p=7123>
-
-<https://all-record.tistory.com/185>
-
+- <https://www.bsidesoft.com/?p=7123>
+- <https://all-record.tistory.com/185>
 참고

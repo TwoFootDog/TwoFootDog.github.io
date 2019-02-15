@@ -47,7 +47,7 @@ _ _ _
 - <http://maven.apache.org/download.cgi> 에서 메이븐 최신버전 다운로드
 - 다운받은 압축파일을 원하는 경로에 풀고, 해당 경로를 시스템 환경변수에 **"MAVEN_HOME"** 추가
 - 시스템 환경변수 **"PATH"**에 **"%MAVEN_HOME%/bin"** 추가(mvn 명령어를 편하게 사용하기 위함)
-- 메이븐 기본 로컬 저장소 위치는 **"USER_HOME/.m2**이며, 메이븐 중앙 저장소는 **"https://repo.maven.apache.org/maven2/"** 이다.
+- 메이븐 기본 로컬 저장소 위치는 **"USER_HOME/.m2**이며, 메이븐 중앙 저장소는 <http://repo1.maven.org/maven2> 이다.
 - 중앙 저장소에서 로컬 저장소로 라이브러리나 플러그인을 다운로드 하는데, 로컬 저장소는 settings.xml의 <localRepository> 태그 주석 해제 후 변경 가능.
 
 
@@ -69,8 +69,8 @@ _ _ _
 - 메이븐 기반 프로젝트에서 사용하는 프로젝트 내 빌드 설정파일.
 - 기본구성요소 : 
    - 프로젝트 기본정보(프로젝트 이름, URL, 개발자, 라이선스 등)
-   - 의존성 라이브러리 정보 : groupId, artifactId, version 정보 필요. A라는 라이브러리를 사용하는데 B,C,D가 의존성을 가진다면 A만 dependency에 추가하면 자동으로 B,C,D를 가져온다. dependency에는 <scope> 태그가 있는데 해당 라이브러리가 언제 필요한지 정의할 수 있다.(compile, runtime, provided, test 등)
-   - 빌드 설정 및 환경 : 메이븐의 핵심인 빌드(build)와 관련된 정보를 설정함. (아래에서 자세히 설명)
+   - 의존성 라이브러리 정보 : 프로젝트에 필요한 라이브러리 정보. 아래 7)에서 자세히 설명
+   - 빌드 설정 및 환경 : 메이븐의 핵심인 빌드(build)와 관련된 정보를 설정. 아래 8)에서 자세히 설명
 
 
 
@@ -78,9 +78,27 @@ _ _ _
 
 
 7) 메이븐을 이용한 의존성 관리
-- 
-
-
+- 메이븐의 핵심 기능 중 한개. 프로젝트에 필요한 라이브러리 정보 관리.
+- 메이븐 저장소 구성
+	- 중앙 저장소 : 오픈소스 라이브러리, 메이븐 플러그인, 메이븐 아키타입을 관리하는 저장소. 중앙 저장소는 개발자가 임의로 라이브러리 배포가 불가능하다. 기본적으로 <http://repo1.maven.org/maven2>가 중앙 저장소이다.
+	- 원격 저장소 : 메이븐 중앙 저장소외에 각 회사 혹은 오픈소스 재단에서 운영 관리하는 저장소.(예 http://xxx.xxx.xxx.xxx:5050/nexus(사내 maven 저장소))
+	- 로컬 저장소 : 메이븐을 빌드할 때 다운로드하는 라이브러리, 플러그인을 관리하는 개발자 PC의 저장소(USER_HOME/.m2)
+- 메이븐 의존성 관리 : <dependency>태그를 사용하여 의존성 관리. 의존 라이브러리의 groupId, artifactId, version, scope 정보를 갖음.
+- 메이븐 의존성 정보에서 scope 관련 설명
+	- compile : 기본 scope, 컴파일 및 배포할 때 같이 제공해야 하는 라이브러리
+	- provided : servlet.jar와 같이 컴파일 시점에는 필요하지만 배포할 때에는 포함되지 말아야 하는 라이브러리
+	- runtime : 컴파일 시에는 사용되지 않지만 실행환경에서 사용되어지는 라이브러리
+	- test : JUnit과 같이 테스트 시점에만 사용되는 라이브러리
+	- system : provided와 비슷. 단지 우리가 직접 jar 파일을 제공해야 함. 따라서 이 scope의 jar파일은 저장소에서 관리되지 않을 수 있다.
+	- import : 다른 POM 설정파일에 정의되어 있는 의존관계설정을 현재 프로젝트로 가저온다.
+- 의존성 전이
+	- 라이브러리를 의존성에 추가하며, 해당 라이브러리가 의존하고 있는 다른 라이브러리 또한 의존관계에 자동으로 포함된다.
+	- 의존성 전의 기능은 프로젝트의 의존성을 편리하게 관리할 수 있도록 도와주기도 하지만, 불필요한 라이브러리가 추가되거나 의존성이 꼬이게 만드는 원인이 되기도 한다.
+- 의존성 전이에 대한 설정 변경능
+	- 의존성 중개 : 버전이 다른 두개의 라이브러리가 의존관계에 있다면 메이븐은 더 가까운 의존관계에 있는 pom 설정의 버전과 의존관계를 갖음. 예를들면 A프로젝트가 A->B->C->D2.0버전, A->E->D1.0버전의 의존관계가 발생한다면, A프로젝트는 D1.0 버전과 의존관계를 갖는다. 만약 D2.0버전을 사용하고 싶다면 A프로젝트의 메이븐 설정파일에 명확하게 의존관계를 명시해야 한다.(A->D2.0)
+	- 의존성 관리 : <dependencyManagement>태그를 사용하여 의존관계에 있는 라이브러리와 버전을 명시적으로 정의.
+	- 의존성 예외 : <exclusion> 태그를 활용하여 의존성 전이를 예외처리.
+	- 기타 : 의존성 스코프, 선택적 의존성 등의 기능 존재.
 
 
 _ _ _
@@ -89,7 +107,7 @@ _ _ _
 
 
 
-7) 메이븐(Maven) 빌드(build) & 라이프사이클 관련 설명
+8) 메이븐(Maven) 빌드(build) & 라이프사이클 관련 설명
 - 빌드란? 자바코드를 실제로 사용할 수 있게 정리하는 과정. compile, test, package, install, deploy 등이 이에 포함된다.
 - 라이프사이클이란? 메이븐이 미리 정의하고 있는 빌드 순서. 라이프사이클의 각 빌드 단계를 페이즈(phase)라고 한다. 
 - 페이즈(phase) 설명:
@@ -110,7 +128,7 @@ _ _ _
 _ _ _
 
 
-8) 메이븐 플러그인(plugin)과 골(goal)
+9) 메이븐 플러그인(plugin)과 골(goal)
 - maven의 모든 기능은 플러그인(plugin) 기반으로 동작한다. 메이븐 라이프사이클에 포함되어있는 페이즈 또한 플러그인을 통하여 실질적인 작업이 실행된다.
 - <build><plugins><plugin> 태그를 사용하여 사용하고자 하는 플러그인을 추가 및 설정할 수 있다.
 - 플러그인에서 실행할 수 있는 각각의 작업을 골(goal)이라고 하며 각 골은 maven 라이프사이클의 페이즈(phase)와 연결된다. 
@@ -136,7 +154,7 @@ _ _ _
 _ _ _
 
 
-9) pom.xml  <build> 태그 설명
+10) pom.xml  <build> 태그 설명
 - <finalMame> : 빌드 결과물(war, jar, ear) 이름 설정
 - <resources> : 리소스(각종 설정 파일)의 위치 지정 가능. <resource>가 없으면 기본으로 "src/main/resources"
 - <testResources> : 테스트 리소스의 위치 지정 가능. <testResource>가 없으면 기본으로 "src/test/resources"
@@ -148,9 +166,28 @@ _ _ _
 	- <configuration> : 플러그인에서 필요한 설정 값 지정
 
 
+
+
+_ _ _
+
+
+11) Maven 기반의 프로젝트 생성
+- mvn 명령어를 이용하여 템플릿 프로젝트 생성
+`mvn archetype:generate -DgroupId=com.uangel -DartifactId=maven -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false`
+`mvn archetype:generate -DarchetypeCatalog=internal`
+(일반적으로 groupId는 프로젝트 도메인 명, artifactId는 프로젝트 이름을 사용)
+
+- 혹은 IDE를 이용ㅎ라여 Maven 프로젝트 생성
+
+
+
+
+
+_ _ _
+
+
+
 *출처 : 
-<https://dimdim.tistory.com/entry/Maven-%EC%A0%95%EB%A6%AC>
-
-<https://jeong-pro.tistory.com/168>
-
+- <https://dimdim.tistory.com/entry/Maven-%EC%A0%95%EB%A6%AC>
+- <https://jeong-pro.tistory.com/168>
 참고
