@@ -177,7 +177,7 @@ _ _ _
 `mvn archetype:generate -DarchetypeCatalog=internal`
 (일반적으로 groupId는 프로젝트 도메인 명, artifactId는 프로젝트 이름을 사용)
 
-- 혹은 IDE를 이용ㅎ라여 Maven 프로젝트 생성
+- 혹은 IDE를 이용하여 Maven 프로젝트 생성
 
 
 
