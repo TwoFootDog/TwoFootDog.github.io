@@ -2,7 +2,7 @@
 layout: post
 title: "[Jenkins]우분투에서 Jenkins 시작하기"
 description: 우분투 환경에서 Jenkins 설치 및 환경 설정하기.
-image: '../images/강아지23.jpg'
+image: '../images/강아지24.jpg'
 category: 'Jenkins'
 tags : 
 - IT
