@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Jenkins]Jenkins정의 및 우분투에서 Jenkins 설치하기"
+title: "[Jenkins]Jenkins 사용법(Jenkins정의 및 우분투에서 Jenkins 설치하기)"
 description: Jenkins정의 및 우분투 환경에서 Jenkins 설치하기.
 image: '../images/강아지24.jpg'
 category: 'Jenkins'
@@ -8,7 +8,7 @@ tags :
 - IT
 - Jenkins
 twitter_text: 
-introduction : Jenkins가 무엇인지 알아보고 우분투 환경에서 Jenkins 설치 및 환경을 설정해보자.
+introduction : Jenkins가 무엇인지 알아보고 우분투 환경에서 Jenkins 설치해보자.
 ---
 ### 젠킨스(Jenkins)
 란 Open Source Ci(Continuous Integration) Tool로써 팀의 구성원들이 작업한 내용을 정기적으로 통합하는 것을 의미한다. 원래는 '허드슨'이라는 이름으로 잘 알려져있었지만 2010년 오라클과의 상표권 문제로 인해 Jenkins로 이름을 바꾸게 되었다.
