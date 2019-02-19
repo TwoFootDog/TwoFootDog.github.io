@@ -19,6 +19,9 @@ _ _ _
 
 
 
+
+
+
 ### [Manage Users]
 
 1) **http://(서버ip):(젠킨스port)** 로 접속한다.
@@ -26,7 +29,11 @@ _ _ _
 ![](../images/jenkins2_20190218_1.jpg)
 
 
+
 _ _ _
+
+
+
 
 
 
@@ -52,12 +59,15 @@ _ _ _
 
 
 
+
+
+
 ### [Global Tool Configuration]
 
 1) 젠킨스에서 사용하는 JDK, Git, Maven 설치 및 설정 정보를 입력한다.
 - JDK 설치
 	- `apt-cache search jdk` : 우분투 리눅스 서버에 JDK 검색
-	- `apt-get install openjdk-8-jdk` : JDK8 버전 설치
+	- `sudo apt-get install openjdk-8-jre openjdk-8-jdk` : JDK8 버전 설치
 	- `/usr/lib/jvm/java-8-openjdk-amd64` : JDK 설치 디렉토리
 - Git 설치
 	- `sudo apt-get install git-core` : 우분투 리눅스 서버에 git 설치
@@ -67,11 +77,14 @@ _ _ _
 	- `mvn -v` : maven 설치 확인 및 정보 확인
 	- `/usr/share/maven` : maven 설치 디렉토리
 
-2) 설정정보 입력(Jenkins관리 -> Global Tool Configuration -> JDK, Git, Maven 설치 디렉토리 입력)
+2) 설정정보 입력(Jenkins관리 -> Global Tool Configuration -> JDK, Git, Maven 설치 디렉토리 입력. Install automatically 해제)
 ![](../images/jenkins2_20190218_4.jpg)
 ![](../images/jenkins2_20190218_5.jpg)
 
 _ _ _
+
+
+
 
 
 
@@ -87,9 +100,31 @@ _ _ _
 3) 아래와 같이 Token이 생성된다. Token 확인 후 복사한다.
 ![](../images/jenkins2_20190218_9.jpg)
 
-4) jenkins로 돌아와서 **jenkins 관리 -> 시스템 설정 -> Github** 에서 Github Servers를 추가하고 정보를 입력한다. Kind에는 "Secret text"로 입력하고, Scret에 복사한 Token 값을 입력한다. 입력이 완료되면 Test Connection을 누르고 서버와 연결되는지 확인하고 저장을 누른다.
+4) jenkins로 돌아와서 **jenkins 관리 -> 시스템 설정 -> Github** 에서 Github Servers를 추가하고 정보를 입력한다. Kind에는 "Secret text"로 선택하고, Secret에 복사한 Token 값을 입력한다. 입력이 완료되면 Test Connection을 누르고 서버와 연결되는지 확인하고 저장을 누른다.
 ![](../images/jenkins2_20190218_10.jpg)
 ![](../images/jenkins2_20190218_11.jpg)
+
+
+
+_ _ _
+
+
+
+### [톰캣서버의 tomcat-users.xml 수정]
+1) Tomcat 설치 디렉토리(이 글에서는 ~/apache-tomcat-9.0.16/conf)의 **tomcat-users.xml** 파일 맨 밑에 아래 코드 추가
+```
+    <role rolename="manager-script"/>
+    <role rolename="manager-gui"/>
+    <role rolename="manager-jmx"/>
+    <role rolename="manager-status"/>
+    <user username="admin" password="XXXXX" roles="manager-gui,manager-script,manager-status,manager-jmx"/>
+```
+2) Tomcat 리스타트
+- `~/apache-tomcat-9.0.16/bin/shutdown.sh`
+- `~/apache-tomcat-9.0.16/bin/startup.sh`
+
+3) Tomcat Manager 접근 가능여부 확인(http://(서버ip):(tomcat포트)/manager). 
+자세한 내용은 <https://twofootdog.github.io/Spring-Maven%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%9C(Tomcat7-maven-plugin)-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%9B%90%EA%B2%A9-%EB%B0%B0%ED%8F%AC(Deploy)/> 참고
 
 
 _ _ _
@@ -105,7 +140,7 @@ _ _ _
 2) General에서 Github Project 체크 후 Github repository URL 입력
 ![](../images/jenkins2_20190218_14.jpg)
 
-3) 소스 코드 관리에서 Git 체크 후 Repository URL 입력
+3) 소스 코드 관리에서 Git 체크 후 Repository URL과 Credentials 입력(Credentials는 Github 접속 id와 password입력)
 ![](../images/jenkins2_20190218_15.jpg)
 
 4) Build에서 **Invoke top-level Maven targets** 선택 -> Maven Version, Goals 입력 후 고급 선택 -> POM 입력 후 저장
@@ -121,16 +156,20 @@ _ _ _
 
 - Jenkins 홈으로 가서 아까 추가했던 Jenkins Item 선택(이 글에선 spring mvc project)
 ![](../images/jenkins2_20190218_20.jpg)
+
 - 왼쪽 메뉴의 **구성** 선택
 ![](../images/jenkins2_20190218_21.jpg)
+
 - Build후 조치에서 **Deploy war/ear to a container** 선택
 ![](../images/jenkins2_20190218_22.jpg)
 
-_ _ _
+- WAR/EAR files 및 Context path(war파일이 배포되는 곳) 추가 -> Add Container에 Tomcat8.X 추가(현재 구동중인 Tomcat은 9.0이지만 8.X로 추가한다) -> Credentials 추가하여 tomcat manager 정보 입력(admin...)
+![](../images/jenkins2_20190218_23.jpg)
+![](../images/jenkins2_20190218_24.jpg)
 
 
 
-### [톰캣서버의 tomcat-users.xml 수정]
+
 
 _ _ _
 
