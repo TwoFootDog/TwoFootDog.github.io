@@ -19,7 +19,7 @@ _ _ _
 
 
 
-##[Manage Users]
+##Manage Users
 
 1) **http://(서버ip):(젠킨스port)** 로 접속한다.
 2) 좌측 메뉴의 **Jenkins관리 -> Manage Users -> 사용자 생성**으로 들어가서 사용자를 새로 생성해준다.
@@ -30,7 +30,7 @@ _ _ _
 
 
 
-##[Configure Global Security]
+##Configure Global Security
 
 1) **Jenkins관리 -> Configure Global Security** 선택
 
@@ -52,7 +52,7 @@ _ _ _
 
 
 
-##[Global Tool Configuration]
+##Global Tool Configuration
 
 1) 젠킨스에서 사용하는 JDK, Git, Maven 설치 및 설정 정보를 입력한다.
 - JDK 설치
@@ -75,7 +75,7 @@ _ _ _
 
 
 
-##[시스템 설정]
+##시스템 설정
 1) 우선 <https://github.com>에서 Github API Token을 생성한다.(**Profile 클릭 -> Settings -> Developer settings -> Personal access tokens -> Generate new token**)
 ![여섯번째이미지](../images/jenkins2_20190218_6.jpg)
 ![일곱번째이미지](../images/jenkins2_20190218_7.jpg)
