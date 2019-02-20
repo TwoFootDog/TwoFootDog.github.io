@@ -124,7 +124,7 @@ _ _ _
 - `~/apache-tomcat-9.0.16/bin/startup.sh`
 
 3) Tomcat Manager 접근 가능여부 확인(http://(서버ip):(tomcat포트)/manager). 
-자세한 내용은 ![aaaaa](https://twofootdog.github.io/Spring-Maven%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%9C(Tomcat7-maven-plugin) %ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%9B%90%EA%B2%A9-%EB%B0%B0%ED%8F%AC(Deploy)/) 참고
+자세한 내용은 [aaaaa](https://twofootdog.github.io/Spring-Maven%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%9C(Tomcat7-maven-plugin) %ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%9B%90%EA%B2%A9-%EB%B0%B0%ED%8F%AC(Deploy)/) 참고
 
 
 _ _ _
