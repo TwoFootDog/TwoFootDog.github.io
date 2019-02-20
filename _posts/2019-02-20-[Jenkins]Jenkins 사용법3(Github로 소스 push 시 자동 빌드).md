@@ -1,17 +1,17 @@
 ---
 layout: post
-title: "[Jenkins]Jenkins 사용법2(Jenkins 환경셋팅 및 Github와 연동하여 Maven 배포하기)"
-description: Jenkins 환경셋팅 및 Github 연동하여 Maven 배포하기
-image: '../images/강아지25.jpg'
+title: "[Jenkins]Jenkins 사용법3(Github로 소스 push 시 자동 빌드)"
+description: Github로 소스 push 시 Jenkins에서 자동으로 소스 빌드
+image: '../images/강아지26.jpg'
 category: 'Jenkins'
 tags : 
 - IT
 - Jenkins
 twitter_text: 
-introduction : Jenkins 환경설정 및 Github에 코드를 푸쉬하면 Jenkins가 이를 인지해서 자동으로 코드를 내려 받아서 Maven으로 배포하게끔 설정해보자.
+introduction : Jenkins와 Github 연동 후 Github로 소스 push 시 Jenkins에서 이를 인지하고 자동으로 소스 빌드.
 ---
 
-젠킨스 설치가 완료되었으니 이번 포스트에서는 환경셋팅 및 Github와의 연동하여 Maven으로 배포하게끔 설정해본다.
+
 
 
 
@@ -124,7 +124,7 @@ _ _ _
 - `~/apache-tomcat-9.0.16/bin/startup.sh`
 
 3) Tomcat Manager 접근 가능여부 확인(http://(서버ip):(tomcat포트)/manager). 
-자세한 내용은 <https://twofootdog.github.io/Spring-Maven%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%9C(Tomcat7-maven-plugin)-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%9B%90%EA%B2%A9-%EB%B0%B0%ED%8F%AC(Deploy)/> 참고
+자세한 내용은 ![aaaaa](https://twofootdog.github.io/Spring-Maven%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%9C(Tomcat7-maven-plugin) %ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%9B%90%EA%B2%A9-%EB%B0%B0%ED%8F%AC(Deploy)/) 참고
 
 
 _ _ _
@@ -140,10 +140,10 @@ _ _ _
 2) General에서 Github Project 체크 후 Github repository URL 입력
 ![](../images/jenkins2_20190218_14.jpg)
 
-3) 소스 코드 관리에서 Git 체크 후 Repository URL과 Credentials 입력(Credentials는 Github 접속 id와 password입력)
+3) 소스 코드 관리에서 Git 체크 후 Repository URL과 Credentials 입력(Credentials는 Github 접속 username/password 입력)
 ![](../images/jenkins2_20190218_15.jpg)
 
-4) Build에서 **Invoke top-level Maven targets** 선택 -> Maven Version, Goals 입력 후 고급 선택 -> POM 입력 후 저장
+4) Build에서 **Invoke top-level Maven targets** 선택 -> Maven Version, Goals 입력 후 고급 선택 -> POM 입력 후 저장(pom.xml의 디렉토리는 정확하게 입력해야 하는데, github에 있는 소스를 jenkins로 가져오게 되면 /var/lib/jenkins/workspace/(생성한 프로젝트 명) 으로 생성되며, pom.xml의 위치는 그 다음부터 적어주면 된다.)
 ![](../images/jenkins2_20190218_16.jpg)
 ![](../images/jenkins2_20190218_17.jpg)
 
@@ -200,3 +200,5 @@ _ _ _
 
 *출처 : 
 - <https://dukeom.wordpress.com/2017/03/20/jenkinsgithubmaven-%EC%9C%BC%EB%A1%9C-%EB%B9%8C%EB%93%9C%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0-24/>
+- <https://blog.hanumoka.net/2018/05/23/jenkins-20180523-jenkins-use-job-with-svn/>
+- <https://ict-nroo.tistory.com/35>

@@ -70,6 +70,9 @@ manger-gui는 tomcat 관리자 기능을 웹페이지에서 볼수 있는 role�
 </Context>
 ```
 
+만약 manager.xml을 만들지 않으면 compile 및 packaging까진 완료되지만 원격 서버로 배포(deploy)가 이루어지진 않는다.(아래 그림 참고)
+![](../images/maven_deploy_20190212_9.jpg)
+
 
 
 _ _ _
