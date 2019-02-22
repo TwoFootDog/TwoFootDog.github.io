@@ -31,7 +31,7 @@ _ _ _
 1) <https://github.com/> -> 배포 프로젝트 선택 -> Settings -> Webhooks -> Add webhook 선택
 ![1](../images/jenkins3_20190222_1.jpg)
 
-2) Payload URL에 **(젠킨스URL)/github-webhook/** 으로 입력. Content type은 **application/json** 으로 입력.
+2) Payload URL에 **(젠킨스URL:PORT)/github-webhook/** 으로 입력. Content type은 **application/json** 으로 입력.
 ![2](../images/jenkins3_20190222_2.jpg)
 
 
