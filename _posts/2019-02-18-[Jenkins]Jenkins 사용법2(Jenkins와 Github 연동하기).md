@@ -110,7 +110,33 @@ _ _ _
 
 
 
-### [톰캣서버의 tomcat-users.xml 수정]
+
+### [빌드를 위한 프로젝트 생성 및 셋팅]
+
+1) 왼쪽상단의 **새로운Item** 메뉴 선택 -> Item name 입력 및 Freestyle project 선택 
+![](../images/jenkins2_20190218_12.jpg)
+![](../images/jenkins2_20190218_13.jpg)
+
+2) General에서 Github Project 체크 후 Github repository URL 입력
+![](../images/jenkins2_20190218_14.jpg)
+
+3) 소스 코드 관리에서 Git 체크 후 Repository URL과 Credentials 입력(Credentials는 Github 접속 id와 password입력)
+![](../images/jenkins2_20190218_15.jpg)
+
+4) Build에서 **Invoke top-level Maven targets** 선택 -> Maven Version, Goals 입력 후 고급 선택 -> POM 입력 후 저장(pom.xml 위치는 보통 **젠킨스디렉토리/workspace/프로젝트디렉토리** 밑에 존재)
+![](../images/jenkins2_20190218_16.jpg)
+![](../images/jenkins2_20190218_17.jpg)
+
+
+
+_ _ _
+
+
+### [배포를 위한 프로젝트 셋팅 - 방법 1]
+배포를 위한 프로젝트 셋팅으로 방법이 두가지가 있는데, 그중 tomcat manager를 이용하는 방법이다.
+
+
+
 1) Tomcat 설치 디렉토리(이 글에서는 ~/apache-tomcat-9.0.16/conf)의 **tomcat-users.xml** 파일 맨 밑에 아래 코드 추가
 ```
     <role rolename="manager-script"/>
@@ -127,27 +153,7 @@ _ _ _
 자세한 내용은 [Maven 프로젝트 Tomcat 배포하기](https://twofootdog.github.io/Spring-Maven%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%9C(Tomcat7-maven-plugin)-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%9B%90%EA%B2%A9-%EB%B0%B0%ED%8F%AC(Deploy)/) 참고
 
 
-_ _ _
-
-
-
-### [빌드 배포를 위한 프로젝트 생성 및 셋팅]
-
-1) 왼쪽상단의 **새로운Item** 메뉴 선택 -> Item name 입력 및 Freestyle project 선택 
-![](../images/jenkins2_20190218_12.jpg)
-![](../images/jenkins2_20190218_13.jpg)
-
-2) General에서 Github Project 체크 후 Github repository URL 입력
-![](../images/jenkins2_20190218_14.jpg)
-
-3) 소스 코드 관리에서 Git 체크 후 Repository URL과 Credentials 입력(Credentials는 Github 접속 id와 password입력)
-![](../images/jenkins2_20190218_15.jpg)
-
-4) Build에서 **Invoke top-level Maven targets** 선택 -> Maven Version, Goals 입력 후 고급 선택 -> POM 입력 후 저장
-![](../images/jenkins2_20190218_16.jpg)
-![](../images/jenkins2_20190218_17.jpg)
-
-5) Build 후 WAS 컨테이너에 배포를 하기 위한 정보 입력
+4) Build 후 WAS 컨테이너에 배포를 하기 위한 정보 입력
 - 빌드 후 조치 추가 클릭 -> Deploy war/ear to a container를 선택해야 하는데 Deploy war/ear to a container가 미존재한다.....(OTL). **검색을 해보니 Deploy to container Plugin 플러그인을 설치해야 한다.** 우선 저장하고 Jenkins 메인화면으로 돌아가서 **Jenkins 관리 -> 플러그인 관리로 들어간다.**
 ![](../images/jenkins2_20190218_18.jpg)
 
@@ -173,6 +179,21 @@ _ _ _
 
 _ _ _
 
+### [배포를 위한 프로젝트 셋팅 - 방법 2]
+두번째 방법은 shell script를 이용하는 방법이다.**(tomcat manager로 배포와 shell script로 배포 둘중 한개를 선택하면 된다!!)** war파일을 tomcat의 webapps 디렉토리에 넣으면 자동으로 압축이 풀리므로, jenkins workspace에 있는 war파일을 tomcat의 webapps 디렉토리로 옮기는 스크립트를 작성하면 된다.
+
+1) jenkins -> 프로젝트 선택 -> 구성 -> Build -> **Execute shell** 추가
+![](../images/jenkins2_20190218_28.jpg)
+
+
+2) /etc/sudoers 파일에 jenkins 계정 추가(sudo 실행 시 비밀번호 입력 등을 skip하기 위함)
+- 명령어 : `sudo vi /etc/sudoers`
+![](../images/jenkins2_20190218_30.jpg)
+
+
+
+
+_ _ _
 
 
 
@@ -188,6 +209,7 @@ _ _ _
 
 3) 생성된 Progress Bar 클릭 -> 왼쪽 메뉴의 **Console Output** 을 클릭하게 되면 Build Log를 확인할 수 있다.
 ![](../images/jenkins2_20190218_27.jpg)
+![](../images/jenkins2_20190218_29.jpg)
 
 
 4) 배포 완료
