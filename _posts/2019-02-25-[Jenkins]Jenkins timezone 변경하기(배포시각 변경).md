@@ -23,7 +23,9 @@ _ _ _
 
 
 ### [/etc/default/jenkins 파일 수정]
-- /etc/default/jenkins 파일에 해당 문구로 수정 : `JAVA_ARGS="-Djava.awt.headless=true -Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Seoul"`
+- /etc/default/jenkins 파일에 해당 문구로 수정 : 
+
+`JAVA_ARGS="-Djava.awt.headless=true -Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Seoul"`
 ![1](../images/jenkins3_20190225.jpg)
 
 
