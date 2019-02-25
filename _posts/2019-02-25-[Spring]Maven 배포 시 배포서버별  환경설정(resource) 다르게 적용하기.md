@@ -47,8 +47,8 @@ _ _ _
 ![5](../images/maven_deploy2_20190225_4.jpg)
 
 2) resource 및 profile 설정
-- resource는 공통 resources 디렉토리와 각 서버별 resources 디렉토리 두개 셋팅. 각 서버별 resource 디렉토리는 변수 사용
-- profile에 각 서버별 환경설정 값 셋팅. 
+- resource는 공통 resources 디렉토리와 각 서버별 resources 디렉토리 두개 셋팅. 각 서버별 resource 디렉토리는 변수 사용. 이 변수는 배포 시 입력받는 명령어에 따라 결정됨
+- profile에 각 서버별 환경설정 값 셋팅
 ![6](../images/maven_deploy2_20190225_5.jpg)
 
 
@@ -66,8 +66,8 @@ _ _ _
 
 3) 운영서버 배포 명령어 : **mvn -P (운영서버env정보) (mvn goals)** 입력(이 글에서는 mvn -P release tomcat7:redeploy)
 
-
-
+4) 추가로 젠킨스에 Build 명령어가 들어가 있다면 해당 명령어도 수정이 필요하다
+![7](../images/maven_deploy2_20190225_6.jpg)
 _ _ _
 
 
