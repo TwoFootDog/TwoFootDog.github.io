@@ -2,7 +2,7 @@
 layout: post
 title: "[Spring]Spring MVC 어노테이션 정리"
 description: Spring MVC 어노테이션 정리
-image: '../images/강아지29.jpg'
+image: '../images/강아지30.jpg'
 category: 'SpringMVC'
 tags : 
 - IT

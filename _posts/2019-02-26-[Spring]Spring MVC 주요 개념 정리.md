@@ -2,7 +2,7 @@
 layout: post
 title: "[Spring]Spring MVC 개념 정리"
 description: Spring MVC 개념 정리
-image: '../images/강아지28.jpg'
+image: '../images/강아지29.jpg'
 category: 'SpringMVC'
 tags : 
 - IT
