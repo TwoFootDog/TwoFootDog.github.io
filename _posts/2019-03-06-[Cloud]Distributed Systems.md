@@ -65,8 +65,57 @@ Uniprocessor Operating System
 Distributed Operating System은 과연 무엇인가?
 - 분산되어있는 자원을 access해야 하기 때문에, 유저에게 seamlessly and transparently 필요
 - 그렇지만 유저에게는 한개의 시스템을 사용하는 것처럼 보여야 함
-- transparency를 제공해야 함
-- 유저에게는 보이지 않는 하나의 싱글 프로세스가 제공되어야 함
+- transparency를 제공해야 함(Location, Migration, concurrency, replication...)
+- 유저에게는 보이지 않는 하나의 싱글 프로세스가 일을 하는 것처럼 제공되어야 함.
+
+Distributed Operating System 유형
+- DOS(Distribued operating system) - Tightly-coupled operating system. 동일한 os를 가진 각각의 독립적인 컴퓨터를 공유하기 위해 os 레이어에 같은 기능을 둠
+- NOS(Network operating system) - Lossely-Coupled operating system. 서로 다른 컴퓨터들을 그대로 활용(LAN이나 WAN활용)
+- Middleware - NOS위에 공통된 하나의 기능을 수행하는 layer를 
+
+Multiprocessor Operating Systems
+- Like a uniiprocessor operating system
+- Managese multiple CPUs transparently to the user
+- Each processor has its own hardware cache
+-> Maintain consistency of cached data
+
+MultiComputer Operating Systems
+- 각각의 커널 위에 동일한 DOS를 올림
+
+Network Operating Systems
+- 각각에 있는 OS를 그대로 유지해 주면서 network 기능만 넣어서 그 network기능을 통해서 통신
+- clinet-server 모델
+
+Middleware-based Systems
+- NOS 위에 Distributed applications만 두면 복잡하므로 Middleware services를 둠
+
+Distributed System 구성
+- Microcomputer model : 여러 multiuser systems
+- Workstations/PCs model : 각각의 user가 자신의 WS/PC로 일을 함. 유저는 file과 다른 리소스를 공유함
+- Processor pool model : processor 그룹화, cluster
+- LANs, MANs, WANs, WWW : network 기반
+
+Six Computing Paradigm
+- Mainframe computing
+- PC computing
+- Network computing
+- Internet computing
+- Grid computing
+- Cloud computing
+
+
+
+issues in diistributed system
+- 분산된 자원의 상태를 알지 못하면 결정을 하지 못함. 때문에 상태를 모니터링 할 수 있는 global knowledge가 필요함. 하지만 global memeory도 없고, common clock도 없고 예측할 수 없는 메시지 딜레이도 있다.
+- 분산된 자원의 컨트롤이 필요함
+- 이벤트를 주문하기 위한 방법이 필요함
+- 각 오브젝트가 이름이 있어야 하고 유니크해야함. 각 오브젝트의 location이 있어야 하고 디렉토리도 있어야 함
+- scalability : 시스템을 더 붙인다고 해서 성능이 늘지는 않음. 최소한의 over-head로 성능을 늘리는 방법을 찾아야 함. 기능이 집중되는 요소는 피해야 함
+- Process synchronization : 공유된 리소스를 여러 컴퓨터가 접근할 때 효율적으로 관리하지 않으면 여러 문제가 발생할 수 있다.
+- 호환성 문제가 고려되어야 함. 
+- 자원관리 : Data migration, Computation migration, Distributed scheduling
+- 보안 : 분산된 자원으로의 인증, 권한부여
+- 분산시스템 구성 : monolithic kernel(각 노드가 전체의 커널구축은 불필요), collective kernel, object-oriented 기법
 
 _ _ _
 
