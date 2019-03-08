@@ -33,24 +33,15 @@ Database는 Collection들의 물리적인 컨테이너이다. 각 Database는 �
 
 
 ### [RDBMS와의 비교]
-| RDBMS       | MongoDB            |
-
+| RDBMS| MongoDB|
 |-------------|--------------------|
-
 | Database    | Database           |
-
 | Table       | Collcetion         |
-
 | Tuple/Row   | Document           |
-
 | Column      | Key/Field          |
-
 | Table Join  | Embedded Documents |
-
 | Primary Key | Primary key(_id)   |
-
 | mysqld      | mongod             |
-
 | mysql       | mongo              |
 
 
