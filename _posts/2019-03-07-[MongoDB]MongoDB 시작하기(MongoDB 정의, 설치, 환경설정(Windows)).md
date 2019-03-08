@@ -34,14 +34,23 @@ Database는 Collection들의 물리적인 컨테이너이다. 각 Database는 �
 
 ### [RDBMS와의 비교]
 | RDBMS       | MongoDB            |
+
 |-------------|--------------------|
+
 | Database    | Database           |
+
 | Table       | Collcetion         |
+
 | Tuple/Row   | Document           |
+
 | Column      | Key/Field          |
+
 | Table Join  | Embedded Documents |
+
 | Primary Key | Primary key(_id)   |
+
 | mysqld      | mongod             |
+
 | mysql       | mongo              |
 
 
@@ -97,13 +106,13 @@ _ _ _
 ![6](../images/mongodb_20190308_6.jpg)
 
 
-- **mongodb --help**를 통하여 명령어를 확인하면 **--dbpath arg** 형식으로 입력하면 dbpath를 설정할 수 있다. 아래와 같이 명령어를 입력해서 dbpath를 설정해주자(옵션에 들어가는 폴더는 직접 만들어주어야 한다). 
+- **mongod --help**를 통하여 명령어를 확인하면 **--dbpath arg** 형식으로 입력하면 dbpath를 설정할 수 있다. 아래와 같이 명령어를 입력해서 dbpath를 지정해서 실행해보자(옵션에 들어가는 폴더는 직접 만들어주어야 한다). 
 `mongod --dbpath C:\util\MongoDB\data\db`
-
 
 
 - **wating for connections on port 27017** 이라고 출력되면 정상적으로 실행된 것이다. 27017은 포트번호이다.
 ![7](../images/mongodb_20190308_7.jpg)
+
 
 - 브라우저를 실행시켜 localhost:27017을 입력하여 아래처럼 메시지가 출력하면 된다.
 ![8](../images/mongodb_20190308_8.jpg)
@@ -113,4 +122,5 @@ _ _ _
 
 
 *출처 : 
-- <https://javacpro.tistory.com/64> 참고
+- <https://javacpro.tistory.com/64>
+- <https://velopert.com/436> 참고
