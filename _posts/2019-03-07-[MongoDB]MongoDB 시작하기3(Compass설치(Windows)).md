@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[MongoDB]MongoDB 시작하기3(Compass 설치)"
+title: "[MongoDB]MongoDB 시작하기2(Compass 설치)"
 description: 
 image: '../images/강아지33.jpg'
 category: 'MongoDB'
