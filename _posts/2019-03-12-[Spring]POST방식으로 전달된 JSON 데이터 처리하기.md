@@ -22,7 +22,7 @@ Spring Project 를 수행하다가 Parameter나 Header값이 아닌 POST방식�
 
 위와 같은 메시지가 발생하는 원인은, HttpServletRequest의 InputStream은 한번 읽으면 다시 읽을 수 없다(톰캣 개발자들이 막아놨음). 
 
-하지만 위와 같은 문제에 대한 해결책이 있다. 우선 Wrapper 객체를 하나 만들어서 일단 InputStream을 읽어서 내 맘대로 이것저것 작업한 뒤, 다른 곳에서 InputStream을 다시 읽으려고 시도하는 경우 이미 읽었던 데이터로 다시 InputStream을 생성해 돌려주도록 만드는 방법이 있다. (서블릿 Filter를 활용하는 방법이다. Filter에 대한 설명은 []())
+하지만 위와 같은 문제에 대한 해결책이 있다. 우선 Wrapper 객체를 하나 만들어서 일단 InputStream을 읽어서 내 맘대로 이것저것 작업한 뒤, 다른 곳에서 InputStream을 다시 읽으려고 시도하는 경우 이미 읽었던 데이터로 다시 InputStream을 생성해 돌려주도록 만드는 방법이 있다. (서블릿 Filter를 활용하는 방법이다. Filter에 대한 설명은 "[Filter에 대한 설명](https://twofootdog.github.io/Spring-POST%EB%B0%A9%EC%8B%9D%EC%9C%BC%EB%A1%9C-%EC%A0%84%EB%8B%AC%EB%90%9C-JSON-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%B2%98%EB%A6%AC%ED%95%98%EA%B8%B0/)" POST에서 확인할 수 있다.)
 
 만드는 방법은 아래와 같다.
 
