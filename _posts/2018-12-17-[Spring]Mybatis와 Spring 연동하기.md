@@ -76,13 +76,6 @@ _ _ _
             <version>${org.springframework-version}</version>
         </dependency>
 
-        <!-- SQL로그 확인용 lib-->
-        <dependency>
-            <groupId>org.bgee.log4jdbc-log4j2</groupId>
-            <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
-            <version>1.16</version>
-        </dependency>
-
         <!-- Lombok lib-->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -168,7 +161,7 @@ public interface TimeMapper {
 _ _ _
 
 
-4) src/main/resources/디렉토리명/mapper에 TimeMapper.xml을 생성한다(TimeMapper인터페이스의).namespace에 정의된 명과 인터페이스명이 동일하면 두개를 병합하여 처리한다. 또한 <select> 태그의 id속성의 값은 인터페이스의 메서드와 동일하게 맞춰야 한다. 그리고 <select>태그의 resultType도 인터페이스의 메서드의 리턴타입과 동일해야 한다.
+4) src/main/resources/디렉토리명/mapper에 TimeMapper.xml을 생성한다(TimeMapper인터페이스의).namespace에 정의된 명과 인터페이스명이 동일하면 두개를 병합하여 처리한다. 또한 select 태그의 id속성의 값은 인터페이스의 메서드와 동일하게 맞춰야 한다. 그리고 <select>태그의 resultType도 인터페이스의 메서드의 리턴타입과 동일해야 한다.
 
 **TimeMapper.xml**
 ```
