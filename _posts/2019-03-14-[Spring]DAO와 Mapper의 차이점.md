@@ -2,7 +2,7 @@
 layout: post
 title: "[Spring]DAO와 Mapper의 차이점"
 description: 
-image: '../images/강아지39.jpg'
+image: '../images/강아지40.jpg'
 category: 'SpringMVC'
 tags : 
 - IT
@@ -15,14 +15,14 @@ introduction : DAO와 Mapper의 차이점에 대해 알아보자
 
 Spring 프로젝트를 진행하면서 다양한 프로젝트 소스를 참고하다가 한가지 고민이 생겼다. 필자는 스프링 프로젝트의 구조를 잡을 때 **1) Controller.java - Service.java - Mapper.java - Mapper.xml** 형식으로 구조를 잡았는데, 다른 스프링 프로젝트 구조를 보면 **2) Controller.java - Service.java - DAO.java - Mapper.xml** 형식으로 구조를 잡고 있었다. 단순히 순서상으로만 보면 Mapper.java와 DAO.java만 변경하면 되는 것처럼 보이지만, 1)의 구조에서 Mapper.java는 단순 인터페이스지만, 2)구조에서 DAO.java는 인터페이스와 클래스의 결합된 형태였고, 그 외에도 여러 다른 점들이 눈에 띄었다. 
 
-DAO를 활용한 프로젝트와 Mapper를 활용한 프로젝트의 명확한 차이점을 확인하기 위해서 위 두가지 구조로 프로젝트를 만들어 볼 것이다. 우선 DAO와 Mapper의 정의에 대해 설명하고 두 구조로 프로젝트를 만들어 보자.
+Mapper 인터페이스를 활용한 프로젝트와 DAO를 활용한 프로젝트의 명확한 차이점을 확인하기 위해서 두가지 구조로 프로젝트를 만들어 볼 것이다. 우선 DAO와 Mapper의 정의에 대해 설명하고 두 구조로 프로젝트를 만들어 보자.
 
 _ _ _
 
 ### [DAO와 Mapper인터페이스의 정의]
 
 **1.DAO란?**
-- Data Access Object의 약어로 실질적으로 DB에 접근하여 데이터를 조회하거나 조작하는 기능을 전담하는 객체를 말한다. DAO의 사용 이유는 효율적인 커넥션 관리와 보안성 때문이다. DAO는 저수준의 Logic과 고급 비즈니스 Logic을 분리하고 domain logic으로부터 persistence mechanism을 숨기기 위해 사용한다. 
+- Data Access Object의 약어로 실질적으로 DB에 접근하여 데이터를 조회하거나 조작하는 기능을 전담하는 객체를 말한다. DAO의 사용 이유는 효율적인 커넥션 관리와 보안성 때문이다. DAO는 저수준의 Logic과 고급 비즈니스 Logic을 분리하고 domain logic으로부터 DB관련 mechanism을 숨기기 위해 사용한다. 
 
 
 **Mapper인터페이스란?**
@@ -32,7 +32,8 @@ _ _ _
 **Mapper인터페이스를 사용하지 않을 경우**
 - SqlSession을 등록해줘야 한다.
 - DAO인터페이스와 인터페이스를 구현한 DAO클래스를 생성해줘야한다.
-- Mapper인터페이스를 사용하지 않았을 때는 네임스페이스 + "." + SQL ID로 지정해야 한다.(예를들면 sesseion.selectOne("com.test.mapper.TimeMapper.getReplyer, bno ))
+- Mapper인터페이스를 사용하지 않았을 때는 네임스페이스 + "." + SQL ID로 지정해서 SQL을 호출해야한다.(예를들면 sesseion.selectOne("com.test.mapper.TimeMapper.getReplyer, bno ))
+- selectOne, insert, delete 등 제공하는 메소드를 사용해야 한다.
 - 문자열로 작성하기 때문에 버그가 생길 수 있다.
 - IDE에서 제공하는 code assist를 사용할 수 없다.
 
@@ -49,6 +50,7 @@ _ _ _
 
 
 ### [Controller.java - Service.java - Mapper.java - Mapper.xml구조로 프로젝트 생성]
+우선 원래 프로젝트를 수행 시 구축했던 Mapper 인터페이스 구조를 만들어보자
 
 **1. 프로젝트 구조**
 ![](../images/dao_mapper_20190314.jpg)
@@ -158,7 +160,7 @@ Mapper.xml의 위치를 설정해주어야 하고, sqlSession 을 bean으로 선
 
 
 **7. DAO.java**
-Mapper 인터페이스가 삭제되고 DAO인터페이스와 서비스가 신규 추가되었다.
+Mapper 인터페이스가 삭제되고 DAO인터페이스와 서비스가 신규 추가되었다. DB와 연동하는 sqlSession 객체를 생성했으며, sqlSession을 통해서 selectOne, insert 등의 메소드를 써서 Mapper.xml에 접근하여 SQL을 수행한다. selectOne의 arguments로는 Mapper.xml의 패키지명 + Mapper명 + Mapper sql id명을 결합한 값이 들어간다.
 ![](../images/dao_mapper_20190314_13.jpg)
 ![](../images/dao_mapper_20190314_14.jpg)
 
@@ -178,7 +180,13 @@ _ _ _
 
 ### [결론]
 
+**1) Controller.java - Service.java - Mapper.java - Mapper.xml** 구조와 **2) Controller.java - Service.java - DAO.java - Mapper.xml** 를 비교해 보았다. 결국 1)구조가 Mybatis3.0 이후로 나온 방식이기 때문에 더 최근에 나온 방식이며 사용하기도 더 편리하다. 단 DB에 접근하는 Layer명을 Mapper로 할지 DAO로 할지(혹은 Repository)로 할지는 개발자 기호에 맞게 정해서 구조를 잡으면 될 것 같다.
+DB와 연동되는 인터페이스의 용어가 Mapper보단 DAO가 좋다 싶으면 1)구조로 가되 명명규칙만 DAO로 변경하면 된다. 단 xml파일의 수정이 조금 필요하다.(Mapper.xml과 인터페이스의 파일명이 일치하지 않는 경우 추가 조치가 필요하다.)
 
+**프로젝트 구조**
+이런식으로 DB연동 인터페이스(BoardDAO.java)와 Mapper.xml(BoardMapper.xml)의 파일명이 다른 경우 applicationContext.xml에 mapper.xml 위치를 명시해 줘야 한다.
+![](../images/dao_mapper_20190314_15.jpg)
+![](../images/dao_mapper_20190314_16.jpg)
 
 
 
@@ -189,4 +197,5 @@ _ _ _
 
 *출처 : 
 - <https://bigstupid.tistory.com/23>
-- <https://genesis8.tistory.com/214> 참고
+- <https://genesis8.tistory.com/214> 
+- <https://kookyungmin.github.io/server/2018/08/13/spring_07/> 참고
