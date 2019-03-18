@@ -44,9 +44,8 @@ _ _ _
 ### [3. images] 
 - 설명 : 다운받은 도커 이미지 목록 출력
 - 사용 방법 : `docker images (이미지)`
-- 사용 예 : 
-	- mariadb : `docker images` `docker images mariadb`
-	- ubuntu : `docker run -i -t --name ubuntutest ubuntu /bin/bash`
+- 사용 예 : `docker images mariadb`, `docker images`
+
 ![](../images/docker2_20190318_4.jpg)
 
 
@@ -59,9 +58,9 @@ _ _ _
 - 설명 : 도커 이미지를 컨테이너로 생성(도커 이미지 실행)
 - 사용 방법 : `docker run -name (컨테이너명) ....` (이미지 별로 사용 방법이 조금 다른듯?)
 - 사용 예 : 
-	- `docker run --name testdb -e MYSQL_ROOT_PASSWORD=(패스워드) -d mariadb:10.0`
+	- mariadb실행 : `docker run --name testdb -e MYSQL_ROOT_PASSWORD=(패스워드) -d mariadb:10.0`
 ![](../images/docker2_20190318_5.jpg)
-	- `docker run -i -t --name ubuntutest ubuntu /bin/bash` : centos에서 ubuntu docker 실행 후 ubuntu에 접속됨
+	- ubuntu실행 : `docker run -i -t --name ubuntutest ubuntu /bin/bash` : centos에서 ubuntu docker 실행 후 ubuntu에 접속됨
 ![](../images/docker2_20190318_6.jpg)
 
 - run 옵션정리
@@ -146,7 +145,7 @@ _ _ _
 
 
 
-##[5. ps]
+### [5. ps]
 - 설명 : 컨테이너의 목록을 출력. -a옵션을 주면 모든 컨테이너 정지된 컨테이너까지 모두 출력, 옵션을 사용하지 않으면 실행중인 컨테이너만 출력
 - 사용 방법 : `docker ps (옵션)`
 - 사용 예 : `docker ps`, `docker ps -a`
@@ -158,7 +157,7 @@ _ _ _
 
 
 
-## [6. start]
+### [6. start]
 - 설명 : 컨테이너 실행을 중지시킴
 - 사용 방법 : `docker start (컨테이너명 or 컨테이너ID)`
 - 사용 예 : `docker start ubuntutest`
@@ -170,7 +169,7 @@ _ _ _
 
 
 
-## [7. restart]
+### [7. restart]
 - 설명 : 컨테이너를 재부팅한다
 - 사용 방법 : `docker restart (컨테이너명 or 컨테이너ID)`
 - 사용 예 : `docker restart ubuntutest`
@@ -184,7 +183,7 @@ _ _ _
 
 
 
-## [8. stop]
+### [8. stop]
 - 설명 : 컨테이너를 정지시킨다
 - 사용 방법 : `docker stop (컨테이너명 or 컨테이너ID)`
 - 사용 예 : `docker stop ubuntutest`
@@ -197,7 +196,7 @@ _ _ _
 
 
 
-## [9. attach]
+### [9. attach]
 - 설명 : 시작한 컨테이너에 접속한다. 빠져나올 때는 exit 명령어나 ctrl+D로 빠져나온다.
 - 사용 방법 : `docker attach (컨테이너명 or 컨테이너ID)`
 - 사용 예 : `docker attach ubuntutest`
@@ -210,7 +209,7 @@ _ _ _
 
 
 
-## [10. exec]
+### [10. exec]
 - 설명 : 컨테이너에 접속하지 않고(현재 ubuntutest 컨테이너는 /bin/bash로 실행된 상태임) 외부에서 컨테이너 안의 명령어를 실행
 - 사용 방법 : `docker exec (컨테이너명 or 컨테이너ID) (명령어)`
 - 사용 예 : `docker exec ubuntutest echo "Hello"`
