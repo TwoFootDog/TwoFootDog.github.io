@@ -197,7 +197,7 @@ _ _ _
 
 
 ### [9. attach]
-- 설명 : 시작한 컨테이너에 접속한다. 빠져나올 때는 exit 명령어나 ctrl+D로 빠져나온다.
+- 설명 : 시작한 도커 컨테이너에 접속한다. 빠져나올 때는 exit 명령어나 ctrl+D로 빠져나온다.
 - 사용 방법 : `docker attach (컨테이너명 or 컨테이너ID)`
 - 사용 예 : `docker attach ubuntutest`
 ![](../images/docker2_20190318_11.jpg)
@@ -210,10 +210,57 @@ _ _ _
 
 
 ### [10. exec]
-- 설명 : 컨테이너에 접속하지 않고(현재 ubuntutest 컨테이너는 /bin/bash로 실행된 상태임) 외부에서 컨테이너 안의 명령어를 실행
+- 설명 : 도커 컨테이너에 접속하지 않고(현재 ubuntutest 컨테이너는 /bin/bash로 실행된 상태임) 외부에서 컨테이너 안의 명령어를 실행
 - 사용 방법 : `docker exec (컨테이너명 or 컨테이너ID) (명령어)`
 - 사용 예 : `docker exec ubuntutest echo "Hello"`
 ![](../images/docker2_20190318_12.jpg)
+
+
+
+_ _ _
+
+
+
+### [11. rm]
+- 설명 : 도커 컨테이너를 삭제한다
+- 사용 방법 : `docker rm (컨테이너명 or 컨테이너ID)`
+- 사용 예 : `docker rm silly_liskov`
+![](../images/docker2_20190318_13.jpg)
+
+
+
+_ _ _
+
+
+
+### [12. rmi]
+- 설명 : 도커 이미지를 삭제한다
+- 사용 방법 : `docker rmi ((이미지명):(태그명) or (이미지ID))`
+- 사용 예 : `docker rmi hello-world:latest` 
+![](../images/docker2_20190318_14.jpg)
+
+
+_ _ _
+
+
+
+### [13. history]
+- 설명 : 도커 이미지의 히스토리를 조회한다
+- 사용 방법 : `docker history ((이미지명):(태그명) or (이미지ID))`
+- 사용 예 : `docker history mariadb:10.0` 
+![](../images/docker2_20190318_15.jpg)
+
+
+
+_ _ _
+
+
+
+### [14. cp]
+- 설명 : 도커 컨테이너에서 호스트로 파일을 복사한다
+- 사용 방법 : `docker cp (컨테이너명):<경로> <호스트경로>`
+- 사용 예 : `docker cp ubuntutest:/root/test.txt ./` 
+![](../images/docker2_20190318_16.jpg)
 
 
 
