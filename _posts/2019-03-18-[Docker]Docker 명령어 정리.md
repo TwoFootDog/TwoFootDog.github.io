@@ -158,7 +158,7 @@ _ _ _
 
 
 ### [6. start]
-- 설명 : 컨테이너 실행을 중지시킴
+- 설명 : 컨테이너 실행을 실행시킨다
 - 사용 방법 : `docker start (컨테이너명 or 컨테이너ID)`
 - 사용 예 : `docker start ubuntutest`
 ![](../images/docker2_20190318_8.jpg)
@@ -261,6 +261,61 @@ _ _ _
 - 사용 방법 : `docker cp (컨테이너명):<경로> <호스트경로>`
 - 사용 예 : `docker cp ubuntutest:/root/test.txt ./` 
 ![](../images/docker2_20190318_16.jpg)
+
+
+
+_ _ _
+
+
+
+### [15. commit]
+- 설명 : 도커 컨테이너의 변경 사항을 이미지 파일로 생성한다
+- 사용 방법 : `docker commit <옵션> (컨테이너명 or 컨테이너ID) (이미지이름):(태그)`
+- 사용 예 : `docker commit -a "kang" -m "add test.txt" ubuntutest ubuntu:99.0`
+![](../images/docker2_20190318_17.jpg)
+
+
+_ _ _
+
+
+
+### [16. diff]
+- 설명 : 도커 컨테이너가 실행되면서 변경된 파일 목록을 출력한다. 비교 기준은 컨테이너를 생성한 이미지 내용이다
+- 사용 방법 : `docker diff (컨테이너명 or 컨테이너ID)`
+- 사용 예 : `docker diff ubuntutest`
+![](../images/docker2_20190318_18.jpg)
+
+
+
+_ _ _
+
+
+
+### [17. inspect]
+- 설명 : 도커 이미지나 컨테이너의 세부 정보를 출력합니다.
+- 사용 방법 : `docker inspect (컨테이너명 or 컨테이너ID) or (이미지명 or 이미지ID)`
+- 사용 예 : `docker inspect testdb`
+![](../images/docker2_20190318_19.jpg)
+
+
+_ _ _
+
+
+
+### [18. build]
+- 설명 : Dockerfile로 도커 이미지를 생성한다
+- 사용 방법 : `docker build <옵션> <Dockerfile 경로>`
+- 사용 예 : `docker build -t test_api.0.1 /opt/hello`, `docker build -t test_api:0.1 https://raw.githubusercontent.com/kstaken/dockerfile-examples/master/apache/Dockerfile`
+![](../images/docker2_20190318_20.jpg)
+- build 옵션 : 
+	- --force-rm=false: 이미지 생성에 실패했을 때도 임시 컨테이너를 삭제합니다.
+	- --no-cache=false: 이전 빌드에서 생성된 캐시를 사용하지 않습니다. Docker는 이미지 생성 시간을 줄이기 위해서 Dockerfile의 각 과정을 캐시하는데, 이 캐시를 사용하지 않고 처음부터 다시 이미지를 생성합니다.
+	- -q, --quiet=false: Dockerfile의 RUN이 실행한 출력 결과를 표시하지 않습니다.
+	- --rm=true: 이미지 생성에 성공했을 때 임시 컨테이너를 삭제합니다.
+	- -t, --tag=””: 저장소 이름, 이미지 이름, 태그를 설정합니다. <저장소 이름>/<이미지 이름>:<태그> 형식입니다.
+
+
+
 
 
 
