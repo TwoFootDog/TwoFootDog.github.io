@@ -158,7 +158,7 @@ _ _ _
 
 
 ### [6. start]
-- 설명 : 컨테이너 실행을 실행시킨다
+- 설명 : 컨테이너를 실행시킨다
 - 사용 방법 : `docker start (컨테이너명 or 컨테이너ID)`
 - 사용 예 : `docker start ubuntutest`
 ![](../images/docker2_20190318_8.jpg)
