@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Docker]Dockerfile 개요 및 작성법 가이드"
+title: "[Docker]Dockerfile의 정의 및 작성법 가이드"
 description: 
 image: '../images/강아지45.jpg'
 category: 'Docker'
