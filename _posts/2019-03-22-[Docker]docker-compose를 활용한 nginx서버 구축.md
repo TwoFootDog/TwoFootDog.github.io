@@ -8,6 +8,7 @@ tags :
 - IT
 - Docker
 - nginx
+- Web
 
 twitter_text: 
 introduction : Docker-compose와 Dockerfile을 활용하여 간단한 nginx 서버를 구축해보자
