@@ -42,7 +42,7 @@ _ _ _
 
 
 ### [3. 확인]
-- 명령어 : rpm -qa | grep MariaDB
+- 명령어 : `rpm -qa | grep MariaDB`
 ![](../images/mariadb_20190322_3.jpg)
 
 
@@ -89,7 +89,7 @@ _ _ _
 - 명령어 :
 	- 마리아DB 접속 : `mysql -u root -p`
 	- database를 mysql로 전환 : `use mysql;`
-	- root계정 or 특정 계정에 외부접근 권한 부여 : `grant all privileges on (DB이름).(테이블이름) to '(계정명)'@'(접속위치);' identified by '(계정비밀번호)';`
+	- root계정 or 특정 계정에 외부접근 권한 부여 : `grant all privileges on (DB이름).(테이블이름) to '(계정명)'@'(접속위치)' identified by '(계정비밀번호)';`
 	- 등록된 권한 확인 : `select host, user, password from user;`
 	- refresh : `flush privileges;`
 ![](../images/mariadb_20190322_7.jpg)
