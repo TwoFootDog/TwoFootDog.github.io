@@ -103,7 +103,7 @@ _ _ _
 ### [8. 프로젝트용 database 생성]
 - 명령어 :
 	- database 리스트 확인 : `show databases;`
-	- database 생성 : `create database (데이터베이스명);`
+	- database 생성(기본 UTF8 설정 추가) : `create database (데이터베이스명) default character set utf8 collate utf8_general_ci;`
 ![](../images/mariadb_20190322_8.jpg)
 
 
@@ -143,6 +143,18 @@ _ _ _
 
 
 
+### [MariaDB utf-8 인코딩 변경]
+- /etc/my.cnf.d/client.cnf
+![](../images/mariadb_20190322_11.jpg)
+
+- /etc/my.cnf.d/mysql-clients.cnf
+![](../images/mariadb_20190322_12.jpg)
+
+- /etc/my.cnf.d/server.cnf
+![](../images/mariadb_20190322_13.jpg)
+
+- DB 재시작 : `sudo systemctl restart mariadb`
+![](../images/mariadb_20190322_14.jpg)
 
 
 _ _ _
@@ -150,4 +162,5 @@ _ _ _
 
 *출처 : 
 - <https://zetawiki.com/wiki/CentOS7_MariaDB_%EC%84%A4%EC%B9%98> 
-- <https://wlsufld.tistory.com/40>  참고
+- <https://wlsufld.tistory.com/40>  
+- <https://slobell.com/blogs/38> 참고
