@@ -305,7 +305,9 @@ _ _ _
 ### [18. build]
 - 설명 : Dockerfile로 도커 이미지를 생성한다
 - 사용 방법 : `docker build <옵션> <Dockerfile 경로>`
-- 사용 예 : `docker build -t test_api.0.1 /opt/hello`, `docker build -t test_api:0.1 https://raw.githubusercontent.com/kstaken/dockerfile-examples/master/apache/Dockerfile`
+- 사용 예 : 
+	- `docker build -t test_api.0.1 /opt/hello`
+	- `docker build -t test_api:0.1 https://raw.githubusercontent.com/kstaken/dockerfile-examples/master/apache/Dockerfile`
 ![](../images/docker2_20190318_21.jpg)
 ![](../images/docker2_20190318_20.jpg)
 - build 옵션 : 

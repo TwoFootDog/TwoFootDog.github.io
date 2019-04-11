@@ -38,8 +38,7 @@ _ _ _
 - 사용 예시 : 
 	- 우선 Dockerfile에 아래와 같이 입력 후 저장한다
 ![](../images/dockerfile_20190319_1.jpg)
-	- 그리고 다음과 같은 명령어를 수행해서 이미지를 생성한다. t옵션은 새롭게 생성될 이미지 이름을 정하는 것이다. 마지막 .은 Dockerfile의 위치이다.
-`docker build -t fromtest:0.0 .`
+	- 그리고 다음과 같은 명령어를 수행해서 이미지를 생성한다. t옵션은 새롭게 생성될 이미지 이름을 정하는 것이다. 마지막 .은 Dockerfile의 위치이다 : `docker build -t fromtest:0.0 .`
 ![](../images/dockerfile_20190319_2.jpg)
 	- 수행하면 fromtest이미지와 우분투(fromtest이미지 기반)가 생성된다. fromtest이미지는 우분투 이미지와 동일하다. 왜냐하면 우분투 이미지를 기반으로 만들어졌고, 그 외에는 아무 작업을 하지 않았기 때문이다.
 
@@ -55,11 +54,9 @@ _ _ _
 - 사용 예시 : 
 	- 우선 Dockerfile을 아래와 같이 수정한다
 ![](../images/dockerfile_20190319_3.jpg)
-	- 그리고 아래와 같은 명령어를 수행해서 이미지를 생성한다.
-`docker build -t runtest:0.0 .`
+	- 그리고 다음과 같은 명령어를 수행해서 이미지를 생성한다 : `docker build -t runtest:0.0 .`
 ![](../images/dockerfile_20190319_4.jpg)
-	- 그 다음 아래와 같은 명령어를 수행해서 컨테이너를 생성한다. 
-` docker run -i -t --name runtest runtest:0.0`
+	- 그 다음 다음과 같은 명령어를 수행해서 컨테이너를 생성한다 : `docker run -i -t --name runtest runtest:0.0`
 ![](../images/dockerfile_20190319_5.jpg)
 	- 컨테이너를 생성하면 Dockerfile에 명시된 `mkdir /testdir` 명령어가 실행되어 컨테이너 내부에 testdir이 생성된 것을 확인할 수 있다.
 
