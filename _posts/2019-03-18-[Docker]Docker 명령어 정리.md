@@ -56,7 +56,7 @@ _ _ _
 
 ### [4. run]
 - 설명 : 도커 이미지를 컨테이너로 생성(도커 이미지 실행)
-- 사용 방법 : `docker run -name (컨테이너명) ....` (이미지 별로 사용 방법이 조금 다른듯?)
+- 사용 방법 : `docker run <옵션> (이미지):(태그) ....` (이미지 별로 사용 방법이 조금 다른듯?)
 - 사용 예 : 
 	- mariadb실행 : `docker run --name testdb -e MYSQL_ROOT_PASSWORD=(패스워드) -d mariadb:10.0`
 ![](../images/docker2_20190318_5.jpg)
@@ -304,9 +304,11 @@ _ _ _
 
 ### [18. build]
 - 설명 : Dockerfile로 도커 이미지를 생성한다
-- 사용 방법 : `docker build <옵션> <Dockerfile 경로>`
+- 사용 방법 : 
+	- `docker build <옵션> <Dockerfile 경로>`
 - 사용 예 : 
-	- `docker build -t test_api.0.1 /opt/hello`
+	- `docker build -t test_api:0.1 /opt/hello`
+	- `docker build -t test_api:0.1 -f Dockerfile.test .`
 	- `docker build -t test_api:0.1 https://raw.githubusercontent.com/kstaken/dockerfile-examples/master/apache/Dockerfile`
 ![](../images/docker2_20190318_21.jpg)
 ![](../images/docker2_20190318_20.jpg)
