@@ -30,7 +30,7 @@ _ _ _
 _ _ _
 
 ### [2. Docker컨테이너에 Jenkins 설치]
-1. 도커 컨테이너에 Jenkins 설치 후 구동 : `docker run --rm -d -u root -p 8081:8080 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v "$HOME":/home jenkinsci/blueocean`
+1. 도커 컨테이너에 Jenkins 설치 후 구동 : `docker run -d -u root -p 8081:8080 --name=docker-jenkins -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v "$HOME":/home jenkinsci/blueocean`
 2. Jenkins 포트 방화벽 오픈 : 
 	- `sudo iptables -I INPUT 1 -p tcp --dport 8081 -j ACCEPT `
 	- `sudo iptables -I OUTPUT 1 -p tcp --dport 8081 -j ACCEPT `
