@@ -64,48 +64,42 @@ _ _ _
 ![](../images/docker2_20190318_6.jpg)
 
 - run 옵션정리
-```
 	1) -a, --attach=[]: 컨테이너에 표준 입력(stdin), 표준 출력(stdout), 표준 에러(stderr)를 연결합니다.
-		- --attach=”stdin”
+	    예 : --attach=”stdin”
 	2) --add-host=[]: 컨테이너의 /etc/hosts에 호스트 이름과 IP 주소를 추가합니다.
-		- --add-host=hello:192.168.0.10
-	3) -c, --cpu-shares=0: CPU 자원 분배 설정입니다. 설정의 기본 값은 1024이며 각 값은 상대적으로 적용됩니다.
-		- --cpu-shares=2048처럼 설정하면 기본 값 보다 두 배 많은 CPU 자원을 할당합니다.
-		- 이 설정 값은 리눅스 커널의 cgroups에서 사용됩니다.
+	    예 : --add-host=hello:192.168.0.10
+	3) -c, --cpu-shares=0: CPU 자원 분배 설정입니다. 설정의 기본 값은 1024이며 각 값은 상대적으로 적용됩니다.(이 설정 값은 리눅스 커널의 cgroups에서 사용됩니다.)
+	    예 : --cpu-shares=2048처럼 설정하면 기본 값 보다 두 배 많은 CPU 자원을 할당합니다.
 	4) --cap-add=[]: 컨테이너에서 cgroups의 특정 Capability를 사용합니다. ALL을 지정하면 모든 Capability를 사용합니다.
-		- --cap-add=”MKNOD” --cap-add=”NET_ADMIN”처럼 설정합니다. 모든 Capability 목록은 다음 링크를 참조하기 바랍니다.
-		- <http://linux.die.net/man/7/capabilities>
+	    예 :  --cap-add=”MKNOD” --cap-add=”NET_ADMIN”처럼 설정합니다. 모든 Capability 목록은 다음 링크를 참조하기 바랍니다. <http://linux.die.net/man/7/capabilities>
 	5) --cap-drop=[]: 컨테이너에서 cgroups의 특정 Capability를 제외합니다.
 	6) --cidfile=””: cid 파일 경로를 설정합니다. cid 파일에는 생성된 컨테이너의 ID가 저장됩니다.
 	7) --cpuset=””: 멀티코어 CPU에서 컨테이너가 실행될 코어를 설정합니다.
-		- --cpuset=”0,1”처럼 설정하면 첫 번째, 두 번째 CPU 코어를 사용합니다.
-		- --cpuset=”0-3”처럼 설정하면 첫 번째 CPU 코어부터 네 번째까지 사용합니다.
+	    예 :  --cpuset=”0,1”처럼 설정하면 첫 번째, 두 번째 CPU 코어를 사용합니다.
+	    예 : --cpuset=”0-3”처럼 설정하면 첫 번째 CPU 코어부터 네 번째까지 사용합니다.
 	8) -d, --detach=false: Detached 모드입니다. 보통 데몬 모드라고 부르며 컨테이너가 백그라운드로 실행됩니다.
 	9) --device=[]: 호스트의 장치를 컨테이너에서 사용할 수 있도록 연결합니다. <호스트 장치>:<컨테이너 장치> 형식입니다.
-		- --device=”/dev/sda1:/dev/sda1”처럼 설정하면 호스트의 /dev/sda1 블록 장치를 컨테이너에서도 사용할 수 있습니다.
+		예 :--device=”/dev/sda1:/dev/sda1”처럼 설정하면 호스트의 /dev/sda1 블록 장치를 컨테이너에서도 사용할 수 있습니다.
 	10) --dns=[]: 컨테이너에서 사용할 DNS 서버를 설정합니다.
-		- --dns=”8.8.8.8”
+		예 : --dns=”8.8.8.8”
 	11) --dns-search=[]: 컨테이너에서 사용할 DNS 검색 도메인을 설정합니다.
-		- --dns-search=”example.com”처럼 설정하면 DNS 서버에 hello를 질의할 때 hello.example.com을 먼저를 찾습니다.
+		예 : --dns-search=”example.com”처럼 설정하면 DNS 서버에 hello를 질의할 때 hello.example.com을 먼저를 찾습니다.
 	12) -e, --env=[]: 컨테이너에 환경 변수를 설정합니다. 보통 설정 값이나 비밀번호를 전달할 때 사용합니다.
-		- -e MYSQL_ROOT_PASSWORD=examplepassword
+		예 : -e MYSQL_ROOT_PASSWORD=examplepassword
 	13) --entrypoint=””: Dockerfile의 ENTRYPOINT 설정을 무시하고 강제로 다른 값을 설정합니다.
-		- --entrypoint=”/bin/bash”
+		예 : --entrypoint=”/bin/bash”
 	14) --env-file=[]: 컨테이너에 환경 변수가 설정된 파일을 적용합니다.
-		- --env-file=”/etc/environment”
+		예 : --env-file=”/etc/environment”
 	15) --expose=[]: 컨테이너의 포트를 호스트와 연결만 하고 외부에는 노출하지 않습니다.
-		- --expose=”3306”
+		예 : --expose=”3306”
 	16) -h, --hostname=””: 컨테이너의 호스트 이름을 설정합니다.
 	17) -i, --interactive=false: 표준 입력(stdin)을 활성화하며 컨테이너와 연결(attach)되어 있지 않더라도 표준 입력을 유지합니다. 보통 이 옵션을 사용하여 Bash에 명령을 입력합니다.
 	18) --link=[]: 컨테이너끼리 연결합니다. <컨테이너 이름>:<별칭> 형식입니다.
-		- --link=”db:db”
+		예 : --link=”db:db”
 	19) --lxc-conf=[]: LXC 드라이버를 사용한다면 LXC 옵션을 설정할 수 있습니다.
-		- --lxc-conf=”lxc.cgroup.cpuset.cpus = 0,1”
+		예 : --lxc-conf=”lxc.cgroup.cpuset.cpus = 0,1”
 	20) -m, --memory=””: 메모리 한계를 설정합니다. <숫자><단위> 형식이며 단위는 b, k, m, g를 사용할 수 있습니다.
-		- --memory=”100000b”
-		- --memory=”1000k”
-		- --memory=”128m”
-		- --memory=”1g”
+		예 : --memory=”100000b”, --memory=”1000k”, --memory=”1g”
 	21) --name=””: 컨테이너에 이름을 설정합니다.
 	22) --net=”bridge”: 컨테이너의 네트워크 모드를 설정합니다.
 		- bridge: Docker 네트워크 브리지에 새 네트워크를 생성합니다.
@@ -125,7 +119,7 @@ _ _ _
 		- always: 프로세스의 Exit Code와 상관없이 재시작합니다. 예) --restart=”always”
 	27) --rm=false: 컨테이너 안의 프로세스가 종료되면 컨테이너를 자동으로 삭제합니다. -d 옵션과 함께 사용할 수 없습니다.
 	28) --security-opt=[]: SELinux, AppArmor 옵션을 설정합니다.
-		- --security-opt=”label:level:TopSecret”
+		예 : --security-opt=”label:level:TopSecret”
 	29) --sig-proxy=true: 모든 시그널을 프로세스에 전달합니다(TTY 모드가 아닐 때도). 단 SIGCHLD, SIGKILL, SIGSTOP 시그널은 전달하지 않습니다.
 	30) -t, --tty=false: TTY 모드(pseudo-TTY)를 사용합니다. Bash를 사용하려면 이 옵션을 설정해야 합니다. 이 옵션을 설정하지 않으면 명령을 입력할 수는 있지만 셸이 표시되지 않습니다.
 	31) -u, --user=””: 컨테이너가 실행될 리눅스 사용자 계정 이름 또는 UID를 설정합니다.
@@ -134,13 +128,12 @@ _ _ _
 		- <호스트 디렉터리>:<컨테이너 디렉터리> 예) -v /data:/data
 		- <호스트 디렉터리>:<컨테이너 디렉터리>:<ro, rw> 예) -v /data:/data:ro
 		- <호스트 파일>:<컨테이너 파일> 예) -v /var/run/docker.sock:/var/run/docker.sock
-		- - --volumes-from=[]: 데이터 볼륨 컨테이너를 연결하며 <컨테이너 이름, ID>:<ro, rw> 형식으로 설정합니다. 기본적으로 읽기 쓰기 설정은 -v 옵션의 설정을 따릅니다. 자세한 내용은 ‘6.5 Docker 데이터 볼륨 컨테이너 사용하기’를 참조하기 바랍니다.
-	   - --volumes-from=”hello”
-	   - --volumes-from=”hello:ro”처럼 설정하면 데이터 볼륨을 읽기 전용으로 사용합니다.
-	   - --volumes-from=”hello:rw”처럼 설정하면 데이터 볼륨에 읽기 쓰기 모두 할 수 있습니다.
-	   - -w, --workdir=””: 컨테이너 안의 프로세스가 실행될 디렉터리를 설정합니다.
-	   - --workdir=”/var/www”
-```
+		예 : --volumes-from=[]: 데이터 볼륨 컨테이너를 연결하며 <컨테이너 이름, ID>:<ro, rw> 형식으로 설정합니다. 기본적으로 읽기 쓰기 설정은 -v 옵션의 설정을 따릅니다. 자세한 내용은 ‘6.5 Docker 데이터 볼륨 컨테이너 사용하기’를 참조하기 바랍니다.
+	    예 : --volumes-from=”hello”
+	    예 : --volumes-from=”hello:ro”처럼 설정하면 데이터 볼륨을 읽기 전용으로 사용합니다.
+	    예 : --volumes-from=”hello:rw”처럼 설정하면 데이터 볼륨에 읽기 쓰기 모두 할 수 있습니다.
+	    예 : -w, --workdir=””: 컨테이너 안의 프로세스가 실행될 디렉터리를 설정합니다.
+	    예 : --workdir=”/var/www”
 _ _ _
 
 
@@ -314,13 +307,11 @@ _ _ _
 ![](../images/docker2_20190318_21.jpg)
 ![](../images/docker2_20190318_20.jpg)
 - build 옵션 : 
-```
-	- --force-rm=false: 이미지 생성에 실패했을 때도 임시 컨테이너를 삭제합니다.
-	- --no-cache=false: 이전 빌드에서 생성된 캐시를 사용하지 않습니다. Docker는 이미지 생성 시간을 줄이기 위해서 Dockerfile의 각 과정을 캐시하는데, 이 캐시를 사용하지 않고 처음부터 다시 이미지를 생성합니다.
-	- -q, --quiet=false: Dockerfile의 RUN이 실행한 출력 결과를 표시하지 않습니다.
-	- --rm=true: 이미지 생성에 성공했을 때 임시 컨테이너를 삭제합니다.
-	- -t, --tag=””: 저장소 이름, 이미지 이름, 태그를 설정합니다. <저장소 이름>/<이미지 이름>:<태그> 형식입니다.
-```
+	1) --force-rm=false: 이미지 생성에 실패했을 때도 임시 컨테이너를 삭제합니다.
+	2) --no-cache=false: 이전 빌드에서 생성된 캐시를 사용하지 않습니다. Docker는 이미지 생성 시간을 줄이기 위해서 Dockerfile의 각 과정을 캐시하는데, 이 캐시를 사용하지 않고 처음부터 다시 이미지를 생성합니다.
+	3) -q, --quiet=false: Dockerfile의 RUN이 실행한 출력 결과를 표시하지 않습니다.
+	4) --rm=true: 이미지 생성에 성공했을 때 임시 컨테이너를 삭제합니다.
+	5) -t, --tag=””: 저장소 이름, 이미지 이름, 태그를 설정합니다. <저장소 이름>/<이미지 이름>:<태그> 형식입니다.
 
 
 _ _ _
