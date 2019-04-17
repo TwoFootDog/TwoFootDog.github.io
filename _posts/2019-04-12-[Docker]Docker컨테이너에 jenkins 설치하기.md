@@ -44,4 +44,7 @@ _ _ _
 
 
 *출처 : 
-- <https://jenkins.io/doc/tutorials/build-a-java-app-with-maven/#setup-wizard> 참고
+- <https://jenkins.io/doc/tutorials/build-a-java-app-with-maven/#setup-wizard> 
+- <https://blog.voidmainvoid.net/104>
+- <https://stackoverflow.com/questions/47842241/how-do-i-stop-a-running-container-in-jenkinsfile> 
+- <https://devops.stackexchange.com/questions/1683/how-to-check-out-github-repo-after-specifying-skipdefaultcheckout-in-jenkins-dec> 참고
