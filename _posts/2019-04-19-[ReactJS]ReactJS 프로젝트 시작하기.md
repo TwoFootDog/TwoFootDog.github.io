@@ -31,10 +31,13 @@ _ _ _
 ### [3. create-react-app 설치]
 1. 프로젝트 폴더를 생성하고자 하는 폴더로 가서 아래와 같이 명령어를 입력한다(프로젝트 명 : react_test). npx는 npm 패키지를 로컬에 글로벌로 설치하지 않고 바로 일회성으로 실행할 수 있게 해주는 도구이며 npm 5.2.0버전 이후부터 기본으로 제공된다. 
 - 명령어 : `npx create-react-app react-test`
+
 npx가 실행되지 않는 구버전인 경우는 아래와 같이 실행한다
+
+
 - 명령어 : 
- - `npm install create-react-app`
- - `create-react-app react-test`
+	- `npm install create-react-app`
+	- `create-react-app react-test`
 
 2. 설치가 완료되면 하위에 react-test 폴더가 생성되며 해당 폴더로 이동 후 프로젝트를 로컬에서 실행해본다.
 - 명령어 : `npm start`
