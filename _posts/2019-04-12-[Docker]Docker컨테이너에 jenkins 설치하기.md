@@ -52,13 +52,16 @@ _ _ _
 
 ### [3. Docker컨테이너에 Jenkins 설치 및 실행]
 
-1. 도커 컨테이너에 Jenkins 설치 후 구동 : `docker run -d -u root -p 8081:8080 --name=docker-jenkins -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v "$HOME":/home jenkinsci/blueocean`
+1. 도커 컨테이너에 Jenkins 설치 후 구동 : 
+ - `docker run -d -u root -p 8081:8080 --name=docker-jenkins -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v "$HOME":/home jenkinsci/blueocean`
 2. Jenkins 포트 방화벽 오픈 : 
-	- `sudo iptables -I INPUT 1 -p tcp --dport 8081 -j ACCEPT `
-	- `sudo iptables -I OUTPUT 1 -p tcp --dport 8081 -j ACCEPT `
-3. 도커 컨테이너 접속 : ` docker exec -it docker-jenkins bash`
+ - `sudo iptables -I INPUT 1 -p tcp --dport 8081 -j ACCEPT `
+ - `sudo iptables -I OUTPUT 1 -p tcp --dport 8081 -j ACCEPT `
+3. 도커 컨테이너 접속 : 
+ - `docker exec -it docker-jenkins /bin/bash`
 4. jenkins 웹(<http://(젠킨스 서버 ip주소):(젠킨스 port)>) 접속 후 admin password 명령어 확인
-5. admin password 명령어를 접속한 도커 컨테이너에 입력하여 admin password 확인 후 도커 웹에 입력 : `cat /var/jenkins_home/secrets/initialAdminPassword`
+5. admin password 명령어를 접속한 도커 컨테이너에 입력하여 admin password 확인 후 도커 웹에 입력 : 
+ - `cat /var/jenkins_home/secrets/initialAdminPassword`
 6. jenkins 웹에 접속. jenkins 설치(install suggested plugin)
 
 
@@ -166,7 +169,10 @@ _ _ _
 _ _ _
 
 
-여기까지 수행했으면 Jenkins 수동 배포는 완료되었다. 이제 gitlab 저장소에 소스 push 시 자동으로 배포되는 프로세스를 만들어보자.
+### 여기까지 수행했으면 Jenkins 수동 배포는 완료되었다. 이제 gitlab 저장소에 소스 push 시 자동으로 배포되는 프로세스를 만들어보자.
+
+
+_ _ _
 
 ### [8. Jenkins Build Triggers 설정 ]
 1. Jenkins 관리 -> 플러그인 관리 -> 설치된 플러그인 목록에서 **Gitlab Hook Plugin**과 **Gitlab Plugin** 설치 확인. 미 설치 시 설치 필요.
