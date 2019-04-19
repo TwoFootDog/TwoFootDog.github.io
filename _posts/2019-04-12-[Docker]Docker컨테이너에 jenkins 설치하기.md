@@ -209,4 +209,6 @@ _ _ _
 - <https://jenkins.io/doc/tutorials/build-a-java-app-with-maven/#setup-wizard> 
 - <https://blog.voidmainvoid.net/104>
 - <https://stackoverflow.com/questions/47842241/how-do-i-stop-a-running-container-in-jenkinsfile> 
-- <https://devops.stackexchange.com/questions/1683/how-to-check-out-github-repo-after-specifying-skipdefaultcheckout-in-jenkins-dec> 참고
+- <https://devops.stackexchange.com/questions/1683/how-to-check-out-github-repo-after-specifying-skipdefaultcheckout-in-jenkins-dec> 
+- <https://m.blog.naver.com/PostView.nhn?blogId=punxoi&logNo=220304905675&proxyReferer=https%3A%2F%2Fwww.google.com%2F>
+참고
