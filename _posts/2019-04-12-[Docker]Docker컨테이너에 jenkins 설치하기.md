@@ -149,7 +149,16 @@ pipeline {
 }
 
 ```
-
+- 간략 설명
+	- Pipeline 문법에는 크게 두가지가 있다. 처음에는 Scipted 방식이었고 후에 Declarative 방식이 추가되었다. 위에 작성한 방식은 Declarative 방식이다.
+	- pipeline : 젠킨스 파이프라인 플러그인을 호출하기 위한 필수 외부 블록
+	- agent : 파이프라인을 실행하고 싶은 위치 정의. agent any는 파이프라인이나 스테이지를 실행하기 위해 사용 가능한 어느 agent도 사용할 수 있음을 정의
+	- stages : stage의 모음
+	- stage : 젠킨스 파이프라인 stage. 해당 stage 명으로 jenkins 화면에 표시된다
+	- steps : 실제 작업이 수행되는 블록
+	- skipDefaultCheckout(true) : agent가 none 이 아닌 경우 gitlab의 소스를 jenkins 디렉토리로 내려받게 되는데, skipDefaultCheckout이 true인 경우 내려받는 프로세스를 skip한다. false인 경우는 gitlab의 소스를 체크한 후 jenkins 디렉토리로 내려받게 된다.
+	- agent docker : docker image에 명시된 image를 활용하여 steps를 수행한다.
+	
 
 _ _ _
 
