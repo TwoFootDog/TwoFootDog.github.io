@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Docker]Docker컨테이너에 jenkins 설치하기"
+title: "[Docker]Docker컨테이너로 jenkins 실행 후 gitlab으로 spring boot 소스 push 시 Docker Container로 자동 빌드/배포"
 description: 
 image: '../images/강아지61.jpg'
 category: 'Docker'
@@ -10,12 +10,34 @@ tags :
 - Jenkins
 
 twitter_text: 
-introduction : Docker컨테이너로 Jenkins 실행 후 gitlab의 spring boot 소스를 Maven을 활용하여 jar파일로 빌드 후 배포해보자
+introduction : Docker컨테이너로 jenkins 실행 후 gitlab으로 spring boot 소스 push 시 Docker Container로 자동 빌드/배포
 ---
 
 ### [1. 개요]
-Docker 컨테이너로 jenkins 실행 후 gitlab에서 관리하는 spring boot 소스를 Maven build하여 jar파일로 만들고 배포까지 수행해 보자.
+Docker 컨테이너로 jenkins 실행 후 gitlab에서 관리하는 spring boot 소스를 수정 후 push 시 Maven build하여 jar파일로 만들고 Docker Container로 배포까지 수행해 보자.
 
+설치부터 배포까지의 실행 순서는 아래와 같다
+
+**<1단계 - Jenkins를 통한 수동 배포>**
+1. 배포서버에 Docker 설치 & Gitlab Repository 생성 및 로컬 디렉토리와 연결(clone)
+2. 배포서버에 Docker Container로 Jenkins 구동
+3. Jenkins 화면에서(URL접속) Jenkins 설치 및 환경설정(플러그인 설치, 환경설정, Jenkins와 gitlab 연동 등)
+4. gitlab 과 연결된 로컬 디렉토리에 Spring boot 소스 생성
+5. 로컬 디렉토리에 Dockerfile과 Jenkisfile 생성
+6. 로컬 디렉토리에서 소스 커밋 후 gitlab으로 push
+7. Jenkins 화면에서 Open Blue Ocean 실행 후 RUN 수행으로 빌드/배포
+
+**<2단계 - Webhook을 활용한 자동 배포>**
+1. Jenkins 화면에서 Build Trigger 셋팅
+2. gitlab에서 Webhook 셋팅
+3. git-bash에서 소스 커밋 후 push 시 자동 빌드/배포
+
+
+**<빌드/배포 프로세스>**
+![](../images/docker_jenkins_20190418_10.jpg)
+
+
+그럼 아래와 같이 상세하게 작업을 수행해 보자
 
 
 _ _ _
@@ -67,19 +89,118 @@ _ _ _
 
 
 
-_ _ _
-
-### [6. Gitlab과 연결된 Local 디렉토리에 Spring boot 소스 생성]
-
-
 
 _ _ _
 
-### [7. Spring boot 소스 생성 후 해당 디렉토리에 Dockerfile과 Jenkinsfile 생성]
+### [6. Gitlab과 연결된 Local 디렉토리에 Spring boot 소스 생성 후 해당 디렉토리에 Dockerfile과 Jenkinsfile 생성]
+
+1. Dockerfile 과 Jenkins파일 생성
+![](../images/docker_jenkins_20190418_7.jpg)
+
+2. Spring boot의 jar파일을 Docker Container로 만드는 Dockerfile 작성
+![](../images/docker_jenkins_20190418_8.jpg)
+
+```
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+ADD ./target/batch-visualizer-java-migrator-0.0.1-SNAPSHOT.jar app.jar
+ENV JAVA_OPTS=""
+ENTRYPOINT ["java","-jar","/app.jar"]
+```
+
+3. Jenkins 빌드/배포 Pipeline을 정의한 Jenkinsfile 작성
+![](../images/docker_jenkins_20190418_9.jpg)
+
+```
+pipeline {
+    agent none
+    options { skipDefaultCheckout(true) }
+    stages {
+        stage('Build and Test') {
+            agent {
+                docker {
+                    image 'maven:3-alpine'
+                    args '-v /root/.m2:/root/.m2'
+                }
+            }
+            options { skipDefaultCheckout(false) }
+            steps {
+                sh 'mvn -B -DskipTests clean package'
+            }
+        }
+        stage('Docker build') {
+            agent any
+            steps {
+                sh 'docker build -t docker-java-migrator:latest .'
+            }
+        }
+        stage('Docker run') {
+            agent any
+            steps {
+                sh 'docker ps -f name=java-migrator -q | xargs --no-run-if-empty docker container stop'
+                sh 'docker container ls -a -fname=java-migrator -q | xargs -r docker container rm'
+                sh 'docker run -d --name java-migrator -p 8080:8080 docker-java-migrator:latest'
+            }
+        }
+    }
+}
+
+```
+
+
+_ _ _
+
+### [7. gitlab 저장소에 소스 push 후 배포 수행 ]
+1. 로컬 소스 커밋 후 gitlab으로 push
+![](../images/docker_jenkins_20190418_11.jpg)
+
+2. Jenkins Open Blue Ocean 실행 후 RUN
+![](../images/docker_jenkins_20190418_12.jpg)
+![](../images/docker_jenkins_20190418_13.jpg)
+
+3. 배포 수행 확인
+![](../images/docker_jenkins_20190418_14.jpg)
 
 
 
+_ _ _
 
+
+여기까지 수행했으면 Jenkins 수동 배포는 완료되었다. 이제 gitlab 저장소에 소스 push 시 자동으로 배포되는 프로세스를 만들어보자.
+
+### [8. Jenkins Build Triggers 설정 ]
+1. Jenkins 관리 -> 플러그인 관리 -> 설치된 플러그인 목록에서 **Gitlab Hook Plugin**과 **Gitlab Plugin** 설치 확인. 미 설치 시 설치 필요.
+![](../images/docker_jenkins_20190418_15.jpg)
+2. Jenkins에서 빌드/배포 job 선택 -> 구성 -> Build Triggers 에서 **Build when a change is pushed to Gitlab webhook....** 체크박스 체크
+![](../images/docker_jenkins_20190418_16.jpg)
+3. Build Triggers의 고급 버튼 클릭 후 **Secret token** Generate. Allowed branches에서 master branch 선택(master branch에 push 시에만 자동 빌드)
+![](../images/docker_jenkins_20190418_18.jpg)
+
+
+_ _ _
+
+### [9. Gitlab에서 Webhook 설정 ]
+
+1. 프로젝트 선택 -> Settings -> Integrations 선택
+![](../images/docker_jenkins_20190418_17.jpg)
+
+2. Webhook 설정 후 Add webhook(URL은 Jenkins에서 Build Triggers 설정 시 보였던 Gitlab Webhook URL 입력. Secret Token은 Build Triggers 설정 시 생성했던 Secret Toekn 입력 )
+![](../images/docker_jenkins_20190418_19.jpg)
+
+3. 방금 추가된 Webhook을 목록에서 확인 후 Test 수행
+![](../images/docker_jenkins_20190418_20.jpg)
+
+4. HTTP 200 이 리턴되면 정상 작동하는 것임
+![](../images/docker_jenkins_20190418_21.jpg)
+
+
+_ _ _
+
+### [10. 소스 커밋 후 PUSH &  Jenkins 자동 빌드/배포 ]
+
+1. 로컬 소스 수정 후 커밋 & Gitlab 으로 PUSH 수행
+
+2. Jenkins 에서 해당 소스 자동 빌드/배포 수행됨
 
 _ _ _
 
