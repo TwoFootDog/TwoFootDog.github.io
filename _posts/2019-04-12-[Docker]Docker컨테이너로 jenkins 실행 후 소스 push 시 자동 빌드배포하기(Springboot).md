@@ -8,6 +8,7 @@ tags :
 - IT
 - Docker
 - Jenkins
+- Springboot
 
 twitter_text: 
 introduction : Docker컨테이너로 jenkins 실행 후 gitlab으로 spring boot 소스 push 시 Docker Container로 자동 빌드/배포
