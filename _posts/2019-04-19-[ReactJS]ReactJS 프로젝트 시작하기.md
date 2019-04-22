@@ -36,7 +36,7 @@ npx가 실행되지 않는 구버전인 경우는 아래와 같이 실행한다
 
 
 - 명령어 : 
-	- `npm install create-react-app`
+	- `npm install -g create-react-app`
 	- `create-react-app react-test`
 
 2. 설치가 완료되면 하위에 react-test 폴더가 생성되며 해당 폴더로 이동 후 프로젝트를 로컬에서 실행해본다.
