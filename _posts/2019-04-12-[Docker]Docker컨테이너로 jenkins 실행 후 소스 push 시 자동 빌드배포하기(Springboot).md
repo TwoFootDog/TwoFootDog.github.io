@@ -54,7 +54,11 @@ _ _ _
 ### [3. Docker컨테이너에 Jenkins 설치 및 실행]
 
 1. 도커 컨테이너에 Jenkins 설치 후 구동 : 
- - `docker run -d -u root -p 8081:8080 --name=docker-jenkins -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v "$HOME":/home jenkinsci/blueocean`
+ - `docker run -d -u root -p 8081:8080 --name=docker-jenkins-container -v /home/admin/docker/jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v "$HOME":/home jenkinsci/blueocean`
+ - 또는 해당 명령어를 docker-compose.yml 파일로 작성 후 `docker-compose up -d --build` 명령어로 구동 가능하다
+ - docker-compose.yml
+![](../images/docker_jenkins_20190418_22.jpg)
+
 2. Jenkins 포트 방화벽 오픈 : 
  - `sudo iptables -I INPUT 1 -p tcp --dport 8081 -j ACCEPT `
  - `sudo iptables -I OUTPUT 1 -p tcp --dport 8081 -j ACCEPT `
@@ -135,15 +139,16 @@ pipeline {
         stage('Docker build') {
             agent any
             steps {
-                sh 'docker build -t docker-java-migrator:latest .'
+                sh 'docker build -t java-migrator-image:latest .'
             }
         }
         stage('Docker run') {
             agent any
             steps {
-                sh 'docker ps -f name=java-migrator -q | xargs --no-run-if-empty docker container stop'
-                sh 'docker container ls -a -fname=java-migrator -q | xargs -r docker container rm'
-                sh 'docker run -d --name java-migrator -p 8080:8080 docker-java-migrator:latest'
+                sh 'docker ps -f name=java-migrator-container -q | xargs --no-run-if-empty docker container stop'
+                sh 'docker container ls -a -fname=java-migrator-container -q | xargs -r docker container rm'
+                sh 'docker rmi $(docker images -f "dangling=true" -q)'
+                sh 'docker run -d --name java-migrator-container -p 8080:8080 java-migrator-image:latest'
             }
         }
     }
@@ -159,6 +164,9 @@ pipeline {
 	- steps : 실제 작업이 수행되는 블록
 	- skipDefaultCheckout(true) : agent가 none 이 아닌 경우 gitlab의 소스를 jenkins 디렉토리로 내려받게 되는데, skipDefaultCheckout이 true인 경우 내려받는 프로세스를 skip한다. false인 경우는 gitlab의 소스를 체크한 후 jenkins 디렉토리로 내려받게 된다.
 	- agent docker : docker image에 명시된 image를 활용하여 steps를 수행한다.
+	- sh 'docker ps -f name=java-migrator-container -q | xargs --no-run-if-empty docker container stop' : 현재 동작중인 컨테이너(java-migrator-container) stop 시킴
+	- sh 'docker container ls -a -fname=java-migrator-container -q | xargs -r docker container rm' : 현재 동작중인 컨테이너(java-migrator-container) 삭제
+	- sh 'docker rmi $(docker images -f "dangling=true" -q)' : docker image build 시 기존에 존재하던 이미지는 <none> 이미지가 되기 때문에 <none> 이미지를 일괄 삭제해줌
 	
 
 _ _ _

@@ -70,6 +70,7 @@ pipeline {
             steps {
                 sh 'docker ps -f name=nginx-react-container -q | xargs --no-run-if-empty docker container stop'
                 sh 'docker container ls -a -fname=nginx-react-container -q | xargs -r docker container rm'
+                sh 'docker rmi $(docker images -f "dangling=true" -q)'
                 sh 'docker run -d --name nginx-react-container -p 80:80 nginx-react-image:latest'
             }
         }
