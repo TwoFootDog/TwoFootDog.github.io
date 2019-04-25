@@ -127,7 +127,7 @@ _ _ _
 
 
 ### [10. 권한 부여 확인]
-- 명령어 : `show grant for '(유저명)'@'(host)';`
+- 명령어 : `show grants for '(유저명)'@'(host)';`
 ![](../images/mariadb_20190322_10.jpg)
 
 
