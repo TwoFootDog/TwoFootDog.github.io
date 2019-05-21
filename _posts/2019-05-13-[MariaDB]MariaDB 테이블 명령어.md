@@ -72,6 +72,59 @@ VALUES
         'projectdb',
         NULL,
         NULL);
+        
+        
+CREATE TABLE BAT_VIS_MST (
+                           BAT_SEQ BIGINT AUTO_INCREMENT PRIMARY KEY ,
+                           SYS_ID VARCHAR(8) NOT NULL,
+                           APL_YN VARCHAR(1),
+                           BAT_PROC_ID VARCHAR(20),
+                           BAT_PROC_HNM VARCHAR(50),
+                           FILE_YN VARCHAR(1),
+                           FILE_ID VARCHAR(20),
+                           FILE_HNM VARCHAR(50),
+                           RES_FILE_SEND_YN VARCHAR(1),
+                           RES_FILE_ID VARCHAR(20),
+                           FILE_PROC_HOST VARCHAR(20),
+                           FILE_PROC_DIR VARCHAR(100),
+                           FILE_PROC_RES_DIR VARCHAR(100),
+                           FILE_RCV_HOST VARCHAR(20),
+                           FILE_RCV_DIR VARCHAR(100),
+                           FILE_SND_HOST VARCHAR(20),
+                           FILE_SND_DIR VARCHAR(100),
+                           REG_ID VARCHAR(8),
+                           REG_DT DATETIME,
+                           UPD_ID VARCHAR(8),
+                           UPD_DT DATETIME
+)ENGINE=INNODB;
+
+CREATE TABLE APR_BATSCH_MST (
+                              MBRSH_PGM_ID VARCHAR(1) NOT NULL ,
+                              MST_BAT_ID VARCHAR(20) NOT NULL ,
+                              MST_BAT_NM VARCHAR(50),
+                              HOST_NM VARCHAR(20),
+                              INPUT_FILE_YN VARCHAR(1),
+                              FILE_ID VARCHAR(10),
+                              HNM_FILE_NM VARCHAR(40),
+                              PRE_BAT_EXIST_YN VARCHAR(1),
+                              FILE_AUTO_SEND_YN VARCHAR(1),
+                              MULTI_PROC_CNT BIGINT,
+                              REPORT_TYP VARCHAR(1),
+                              APL_YN VARCHAR(1),
+                              REGR_ID VARCHAR(8),
+                              REG_DT DATETIME,
+                              UPDR_ID VARCHAR(8),
+                              UPD_DT DATETIME
+)ENGINE=INNODB;
+
+CREATE TABLE TBL_MAP_MST (
+                           CONN_ID VARCHAR(10) NOT NULL ,
+                           MAP_TYP VARCHAR(1),
+                           TGT_TBL_NM VARCHAR(40),
+                           SRC_TBL_NM VARCHAR(40),
+                           TGT_COL_NM VARCHAR(40),
+                           SRC_COL_NM VARCHAR(40)
+)ENGINE=INNODB;        
 ```
 
 
