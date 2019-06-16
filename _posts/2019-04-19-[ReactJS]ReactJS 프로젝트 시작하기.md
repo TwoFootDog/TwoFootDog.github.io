@@ -42,6 +42,22 @@ npx가 실행되지 않는 구버전인 경우는 아래와 같이 실행한다
 2. 설치가 완료되면 하위에 react-test 폴더가 생성되며 해당 폴더로 이동 후 프로젝트를 로컬에서 실행해본다.
 - 명령어 : `npm start`
 
+_ _ _
+
+### [4. yarn을 통해 설치하는 방법]
+1. yarn 설치
+- 명령어 : npm install -g yarn
+
+2. yarn을 통해서 create-ract-app 설치
+- 명령어 : yarn global add create-react-app
+
+3. create-react-app을 통해 프로젝트 생성
+- 명령어 : create-react-app [프로젝트명(폴더명)]
+
+4. yarn을 통해 프로젝트 구동
+- 명령어 : yarn start
+
+
 
 
 _ _ _
